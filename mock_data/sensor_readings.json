@@ -1,0 +1,15 @@
+{
+    "temperature": {
+      "reading": 25.6,
+      "timestamp": "2023-04-14T13:00:00Z"
+    },
+    "humidity": {
+      "reading": 45.2,
+      "timestamp": "2023-04-14T13:00:00Z"
+    },
+    "light": {
+      "reading": true,
+      "timestamp": "2023-04-14T13:00:00Z"
+    }
+  }
+  
