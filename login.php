@@ -22,7 +22,6 @@ if(isset($_POST['login'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,26 +29,39 @@ if(isset($_POST['login'])) {
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<h1>Login</h1>
     <div class="container">
-        <h1>Login</h1>
+        
         <?php if(isset($error)) { ?>
             <p class="error"><?php echo $error; ?></p>
         <?php } ?>
-        <form method="POST" action="">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+        <div class="login-form">
+            <form method="POST" action="">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
 
-            <label for="role">Login as:</label>
-            <select id="role" name="role">
-                <option value="producer">Producer</option>
-                <option value="consumer">Consumer</option>
-            </select>
+                <div class="form-group">
+                    <label for="role">Login as:</label>
+                    <div class="radio-group">
+                        <input type="radio" id="producer" name="role" value="producer" required>
+                        <label for="producer">Producer</label>
+                    </div>
+                    <div class="radio-group">
+                        <input type="radio" id="consumer" name="role" value="consumer" required>
+                        <label for="consumer">Consumer</label>
+                    </div>
+                </div>
 
-            <input type="submit" name="login" value="Login">
-        </form>
+                <input type="submit" name="login" value="Login">
+            </form>
+        </div>
     </div>
 </body>
 </html>
