@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home Automation - Producer Dashboard</title>
+    <title>Producer Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
     <header>
-        <h1>Home Automation - Producer Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="container">
+  <nav class="navbar">
+    <a href="#" class="navbar-logo">Home Automation</a>
+    <ul class="navbar-menu">
+      <li class="navbar-item"><a href="index.php">Home</a></li>
+      <li class="navbar-item"><a href="logout.php">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+</head>
+
+<div class="container">
+        <h1>Producer Dashboard</h1>
         <h2>Add Sensor Reading</h2>
         <form method="POST" action="">
             <label for="type">Type:</label>
