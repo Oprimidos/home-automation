@@ -30,24 +30,36 @@
                 $data = json_decode($json, true);
 
                 foreach($data as $key => $value) {
-                    echo "<tr>";
-                    echo "<td>" . ucfirst($key) . "</td>";
-                    if(isset($value['reading'])) {
-                         if ($key == "light") {
+                        echo "<tr>";
+                        echo "<td>";
+                        if ($key == "temperature") {
+                            echo "Temperature (C)";
+                        } else if ($key == "humidity") {
+                            echo "Humidity (%)";
+                        } else {
+                            echo ucfirst($key);
+                        }
+                        echo "</td>";
+                        if (isset($value['reading'])) {
+                            if ($key == "temperature") {
+                                echo "<td>" . round(($value['reading'] - 32) * 5/9) . " C</td>";
+                            } else if ($key == "humidity") {
+                                echo "<td>" . $value['reading'] . " %</td>";
+                            } else if ($key == "light") {
                                 echo "<td>" . ($value['reading'] ? "On" : "Off") . "</td>";
                             } else {
                                 echo "<td>" . $value['reading'] . "</td>";
                             }
-                    } else {
-                        echo "<td>-</td>";
+                        } else {
+                            echo "<td>-</td>";
+                        }
+                        if (isset($value['timestamp'])) {
+                            echo "<td>" . $value['timestamp'] . "</td>";
+                        } else {
+                            echo "<td>-</td>";
+                        }
+                        echo "</tr>";
                     }
-                    if(isset($value['timestamp'])) {
-                        echo "<td>" . $value['timestamp'] . "</td>";
-                    } else {
-                        echo "<td>-</td>";
-                    }
-                    echo "</tr>";
-                }
                 ?>
             </tbody>
         </table>
