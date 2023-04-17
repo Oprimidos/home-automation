@@ -42,7 +42,7 @@
                         echo "</td>";
                         if (isset($value['reading'])) {
                             if ($key == "temperature") {
-                                echo "<td>" . round(($value['reading'] - 32) * 5/9) . " C</td>";
+                                echo "<td>" . round(($value['reading'] )) . " C</td>";
                             } else if ($key == "humidity") {
                                 echo "<td>" . $value['reading'] . " %</td>";
                             } else if ($key == "light") {
