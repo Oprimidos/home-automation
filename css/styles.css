@@ -125,6 +125,64 @@ a:hover {
     border-radius: 4px;
     cursor: pointer;
 }
+/* Login page styles */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+  .login-form {
+    background-color: #f7f7f7;
+    border: 1px solid #eaeaea;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="password"],
+  .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  .radio-group {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .radio-group input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .login-form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-form input[type="submit"]:hover {
+    background-color: #444;
+  }
+  
+
 
  /* Button*/
 button {
