@@ -33,7 +33,11 @@
                     echo "<tr>";
                     echo "<td>" . ucfirst($key) . "</td>";
                     if(isset($value['reading'])) {
-                        echo "<td>" . $value['reading'] . "</td>";
+                         if ($key == "light") {
+                                echo "<td>" . ($value['reading'] ? "On" : "Off") . "</td>";
+                            } else {
+                                echo "<td>" . $value['reading'] . "</td>";
+                            }
                     } else {
                         echo "<td>-</td>";
                     }
