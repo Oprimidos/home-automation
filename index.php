@@ -25,7 +25,7 @@
     <script>
         var producerLoginBtn = document.getElementById("producer-login");
         producerLoginBtn.onclick = function() {
-            window.location.href = "login.php?role=producer";
+            window.location.href = "loginP.php?role=producer";
         };
 
         var consumerLoginBtn = document.getElementById("consumer-login");
