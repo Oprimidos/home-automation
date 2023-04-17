@@ -14,7 +14,7 @@
 </header>
 </head>
 
-<div class="container">
+ <div class="container">
         <h1>Producer Dashboard</h1>
         <h2>Add Sensor Reading</h2>
         <form method="POST" action="">
@@ -41,13 +41,15 @@
             </thead>
             <tbody>
                 <?php
-                    $sensor_data = json_decode(file_get_contents('mock_data/sensor_readings.json'), true);
-                    foreach ($sensor_data as $reading) {
-                        echo "<tr><td>" . ucfirst($reading['type']) . "</td><td>" . $reading['value'] . "</td><td>" . date('Y-m-d H:i:s', $reading['timestamp']) . "</td></tr>";
-                    }
+                $sensor_data = json_decode(file_get_contents('mock_data/sensor_readings.json'), true);
+                foreach ($sensor_data as $key => $reading) {
+                    echo "<tr><td>" . ucfirst($key) . "</td><td>" . $reading['reading'] . "</td><td>" . date('Y-m-d H:i:s', strtotime($reading['timestamp'])) . "</td></tr>";
+                }
                 ?>
             </tbody>
         </table>
     </div>
 </body>
+
 </html>
+
