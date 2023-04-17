@@ -22,6 +22,26 @@ h5,
 h6 {
     margin-top: 0;
     text-align: center;
+    background-color: rgba(184, 185, 195, 0.519);
+    font-size: 35px;
+}
+
+#index-info {
+    text-align: center;
+    font-size: 25px;
+}
+
+#index-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+#index-login button {
+    margin: 0 10px;
+    font-size: 23px;
 }
 
 a {
