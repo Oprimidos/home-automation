@@ -30,12 +30,11 @@ if(isset($_POST['login'])) {
 </head>
 <body>
 <h1>Login</h1>
-    <div class="container">
-        
+    <div class="container">   
         <?php if(isset($error)) { ?>
             <p class="error"><?php echo $error; ?></p>
         <?php } ?>
-        <div class="login-form">
+        <div class="login-form" id="login-form">
             <form method="POST" action="">
                 <div class="form-group">
                     <label for="username">Username:</label>
@@ -47,16 +46,20 @@ if(isset($_POST['login'])) {
                     <input type="password" id="password" name="password" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="role">Login as:</label>
+                <div class="form-group" >
+                    <label for="role" id="form-group">Login as:</label>
+                    <div id="label-radio">
                     <div class="radio-group">
+                    <label for="producer">
                         <input type="radio" id="producer" name="role" value="producer" required>
-                        <label for="producer">Producer</label>
+                        Producer</label>
                     </div>
                     <div class="radio-group">
+                    <label for="consumer">
                         <input type="radio" id="consumer" name="role" value="consumer" required>
-                        <label for="consumer">Consumer</label>
+                        Consumer</label>
                     </div>
+                </div>
                 </div>
 
                 <input type="submit" name="login" value="Login">
