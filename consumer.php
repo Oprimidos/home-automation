@@ -8,7 +8,7 @@
     <a href="#" class="navbar-logo">Home Automation</a>
     <ul class="navbar-menu">
       <li class="navbar-item"><a href="index.php">Home</a></li>
-      <li class="navbar-item"><a href="logout.php">Logout</a></li>
+      <li class="navbar-item"><a href="index.php">Logout</a></li>
     </ul>
   </nav>
 </header>
