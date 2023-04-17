@@ -33,14 +33,15 @@
                         <option value="off">Off</option>
                     </select>
                 </div>
-                <div id="temperature-input">
-                    <label for="value-temperature">Temperature:</label>
-                    <input type="number" id="value-temperature" name="value-temperature" step="0.1" min="-273.15">
-                </div>
-                <div id="humidity-input">
-                    <label for="value-humidity">Humidity:</label>
-                    <input type="number" id="value-humidity" name="value-humidity" step="0.1" min="0" max="100">
-                </div>
+              <div id="temperature-input">
+    <label for="value-temperature">Temperature (C):</label>
+    <input type="number" id="value-temperature" name="value-temperature" step="0.1" min="-273.15"> C
+</div>
+<div id="humidity-input">
+    <label for="value-humidity">Humidity (%):</label>
+    <input type="number" id="value-humidity" name="value-humidity" step="0.1" min="0" max="100"> %
+</div>
+
             </div>
             <br>
             <input type="submit" value="Add">
@@ -55,16 +56,18 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $sensor_data = json_decode(file_get_contents('mock_data/sensor_readings.json'), true);
-                foreach ($sensor_data as $key => $reading) {
-                    if ($key === "light") {
-                        echo "<tr><td>" . ucfirst($key) . "</td><td>" . ($reading['reading'] ? "On" : "Off") . "</td><td>" . date('Y-m-d H:i:s', strtotime($reading['timestamp'])) . "</td></tr>";
-                    } else {
-                        echo "<tr><td>" . ucfirst($key) . "</td><td>" . $reading['reading'] . "</td><td>" . date('Y-m-d H:i:s', strtotime($reading['timestamp'])) . "</td></tr>";
-                    }
-                }
-                ?>
+                   <?php
+        $sensor_data = json_decode(file_get_contents('mock_data/sensor_readings.json'), true);
+             foreach ($sensor_data as $key => $reading) {
+                 if ($key === "light") {
+                      echo "<tr><td>" . ucfirst($key) . "</td><td>" . ($reading['reading'] ? "On" : "Off") . "</td><td>" . date('Y-m-d H:i:s', strtotime($reading['timestamp'])) . "</td></tr>";
+                  } else if ($key === "temperature") {
+                       echo "<tr><td>" . ucfirst($key) . "</td><td>" . $reading['reading'] . " °C</td><td>" . date('Y-m-d H:i:s', strtotime($reading['timestamp'])) . "</td></tr>";
+                  } else if ($key === "humidity") {
+                     echo "<tr><td>" . ucfirst($key) . "</td><td>" . $reading['reading'] . " %</td><td>" . date('Y-m-d H:i:s', strtotime($reading['timestamp'])) . "</td></tr>";
+     }
+}
+?>
             </tbody>
         </table>
     </div>
