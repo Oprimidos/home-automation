@@ -17,9 +17,11 @@
   <div class="container">
         <h1>Producer Dashboard</h1>
         <h2>Add Sensor Reading</h2>
-        <form method="POST" action="">
+        <div id="form-producer">
+        <form method="POST" action="" id="form1">
             <label for="type">Type:</label>
-            <select name="type" id="type">
+            <select name="type" id="type" style="font-size: 25px;">
+                <option></option>
                 <option value="light">Light</option>
                 <option value="temperature">Temperature</option>
                 <option value="humidity">Humidity</option>
@@ -28,24 +30,24 @@
             <div id="value-inputs">
                 <div id="light-input">
                     <label for="value-on-off">On/Off:</label>
-                    <select name="value-on-off" id="value-on-off">
+                    <select name="value-on-off" id="value-on-off" style="font-size: 25px;">
                         <option value="on">On</option>
                         <option value="off">Off</option>
                     </select>
                 </div>
               <div id="temperature-input">
     <label for="value-temperature">Temperature (C):</label>
-    <input type="number" id="value-temperature" name="value-temperature" step="0.1" min="-273.15"> C
+    <input type="number" id="value-temperature" name="value-temperature" step="0.1" min="-273.1" style="font-size: 25px;"> C
 </div>
 <div id="humidity-input">
     <label for="value-humidity">Humidity (%):</label>
-    <input type="number" id="value-humidity" name="value-humidity" step="0.1" min="0" max="100"> %
+    <input type="number" id="value-humidity" name="value-humidity" step="0.1" min="0" max="100" style="font-size: 25px;"> %
 </div>
 
             </div>
             <br>
-            <input type="submit" value="Add">
-        </form>
+            <input type="submit" value="Add" style="font-size:25px; width: 100%;">
+        </form></div>
         <h2>Sensor Readings</h2>
         <table>
             <thead>
