@@ -64,6 +64,35 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Button*/
+button {
+    display: inline-block;
+    background-color: #13b7d8;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 50%;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .button-container {
+    text-align: center;
+  }
+  
+  .button-container button:first-child {
+    margin-right: 5px;
+  }
+  
+  .button-container button:last-child {
+    margin-left: 5px;
+  }
+  
 
 /* Login page styles */
 
