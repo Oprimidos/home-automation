@@ -40,12 +40,12 @@ if(isset($_POST['login'])) {
                 <div class="form-group">
                 <h1>Producer Login</h1>
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" name="username" value="admin" required>
                 </div>
 <br>
                 <div class="form-group">
                     <label for="password">Password:&nbsp;</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" value="12345" required>
                 </div>
                 <button type="submit" name="login" value="Login">Login</button>
             </form>
