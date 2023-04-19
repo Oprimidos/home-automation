@@ -18,29 +18,35 @@ if(isset($_POST['login'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Consumer</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Consumer Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+      body {
+        margin: 20px;
+      }
+    </style>
+   
 </head>
 <body>
-<h1>Login Consumer</h1>
+    
     <div class="container">
         
         <?php if(isset($error)) { ?>
             <p class="error"><?php echo $error; ?></p>
         <?php } ?>
         <div class="login-form">
-            <form method="POST" action="">
+            <form class="login" method="POST" action="">
                 <div class="form-group">
+                <h1>Consumer Login</h1>
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
                 </div>
-
+<br>
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password">Password:&nbsp;</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-
-                <input type="submit" name="login" value="Login">
+                <button type="submit" name="login" value="Login">Login</button>
             </form>
         </div>
     </div>
