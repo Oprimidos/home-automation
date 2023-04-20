@@ -4,19 +4,18 @@
     <title>Producer Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
     <header>
-  <nav class="navbar">
-    <a href="#" class="navbar-logo">Home Automation</a>
-    <ul class="navbar-menu">
-      <li class="navbar-item"><a href="index.html">Home</a></li>
-      <li class="navbar-item"><a href="index.html">Logout</a></li>
-    </ul>
-  </nav>
+  <?php include("navbar.html"); ?>
 </header>
 </head>
 
   <div class="container">
-        <h1>Producer Dashboard</h1>
-        <h2>Add Sensor Reading</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 style="padding-top:30px; padding-bottom:30px;">Producer Dashboard</h1>
+        <h2 style="padding-top:30px; padding-bottom:30px;">Add Sensor Reading</h2>
         <div id="form-producer">
         <form method="POST" action="" id="form1">
             <label for="type">Type:</label>
@@ -48,7 +47,7 @@
             <br>
             <input type="submit" value="Add" style="font-size:25px; width: 100%;">
         </form></div>
-        <h2>Sensor Readings</h2>
+        <h2  style="padding-top:30px; padding-bottom:30px;">Sensor Readings</h2>
         <table>
             <thead>
                 <tr>
