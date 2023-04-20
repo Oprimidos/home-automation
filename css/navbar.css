@@ -4,6 +4,7 @@ button {
     box-shadow: none;
     border: none;
     cursor: pointer;
+    width: 100%;
 }
 button:focus, input:focus {
     outline: 0;
