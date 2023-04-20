@@ -4,18 +4,17 @@
     <title>Consumer Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
     <header>
-  <nav class="navbar">
-    <a href="#" class="navbar-logo">Home Automation</a>
-    <ul class="navbar-menu">
-      <li class="navbar-item"><a href="index.html">Home</a></li>
-      <li class="navbar-item"><a href="index.html">Logout</a></li>
-    </ul>
-  </nav>
+  <?php include("navbar.html"); ?>
 </header>
 </head>
 <body>
     <div class="container">
-        <h1>Consumer Dashboard</h1>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 style="padding-top:30px; padding-bottom:30px;" >Consumer Dashboard</h1>
         <table>
             <thead>
                 <tr>
