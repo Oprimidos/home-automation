@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Consumer Dashboard</title>
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -7,7 +8,29 @@
         <?php include("navbar.php"); ?>
     </header>
 </head>
+
 <body>
+    <?php
+    $sqlheat = "SELECT * FROM heatview";
+    $queryheat = $db->prepare($sqlheat);
+    $queryheat->execute();
+    $heat = $queryheat->fetchAll(PDO::FETCH_ASSOC);
+
+    $sqllight = "SELECT * FROM lightview";
+    $querylight = $db->prepare($sqllight);
+    $querylight->execute();
+    $light = $querylight->fetchAll(PDO::FETCH_ASSOC);
+
+    $sqlair = "SELECT * FROM airview";
+    $queryair = $db->prepare($sqlair);
+    $queryair->execute();
+    $air = $queryair->fetchAll(PDO::FETCH_ASSOC);
+
+    $sqlroom = "SELECT * FROM room";
+    $queryroom = $db->prepare($sqlroom);
+    $queryroom->execute();
+    $room = $queryroom->fetchAll(PDO::FETCH_ASSOC);
+    ?>
     <div class="container">
         <br>
         <br>
@@ -16,45 +39,29 @@
         <br>
         <h1 style="padding-top:30px; padding-bottom:30px;">Consumer Dashboard</h1>
 
-        
+
         <button onclick="showTable('temperature')">Temperature</button>
         <button onclick="showTable('humidity')">Humidity</button>
         <button onclick="showTable('light')">Light</button>
-
         <!-- Temperature Table -->
         <table id="temperature-table">
             <thead>
                 <tr>
-                    <th>Measurement</th>
-                    <th>Reading</th>
-                    <th>Timestamp</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Reading</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Room</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php                
-                $json = file_get_contents("mock_data/sensor_readings.json");
-                $data = json_decode($json, true);
-
-                foreach($data as $key => $value) {
-                    if ($key == "temperature") {
-                        echo "<tr>";
-                        echo "<td>";
-                        echo "Temperature (C)";
-                        echo "</td>";
-                        if (isset($value['reading'])) {
-                            echo "<td>" . round(($value['reading'] )) . " C</td>";
-                        } else {
-                            echo "<td>-</td>";
-                        }
-                        if (isset($value['timestamp'])) {
-                            echo "<td>" . $value['timestamp'] . "</td>";
-                        } else {
-                            echo "<td>-</td>";
-                        }
-                        echo "</tr>";
-                    }
-                }
-                ?>
+            <tbody class="table-group-divider">
+                <?php foreach ($heat as $row) { ?>
+                    <tr>
+                        <th scope="row"><?php echo $row['heatID'] ?></th>
+                        <td><?php echo $row['heatValue'] ?></td>
+                        <td>Time yazılacak</td>
+                        <td><?php echo $row['roomName'] ?></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
 
@@ -62,33 +69,21 @@
         <table id="humidity-table" style="display:none;">
             <thead>
                 <tr>
-                    <th>Measurement</th>
-                    <th>Reading</th>
-                    <th>Timestamp</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Reading</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Room</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php                
-                foreach($data as $key => $value) {
-                    if ($key == "humidity") {
-                        echo "<tr>";
-                        echo "<td>";
-                        echo "Humidity (%)";
-                        echo "</td>";
-                        if (isset($value['reading'])) {
-                            echo "<td>" . $value['reading'] . " %</td>";
-                        } else {
-                            echo "<td>-</td>";
-                        }
-                        if (isset($value['timestamp'])) {
-                            echo "<td>" . $value['timestamp'] . "</td>";
-                        } else {
-                            echo "<td>-</td>";
-                        }
-                        echo "</tr>";
-                    }
-                }
-                ?>
+            <tbody class="table-group-divider">
+                <?php foreach ($air as $row) { ?>
+                    <tr>
+                        <th scope="row"><?php echo $row['airID'] ?></th>
+                        <td><?php echo $row['airValue'] ?></td>
+                        <td>Time yazılacak</td>
+                        <td><?php echo $row['roomName'] ?></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
 
@@ -96,33 +91,21 @@
         <table id="light-table" style="display:none;">
             <thead>
                 <tr>
-                    <th>Measurement</th>
-                    <th>Reading</th>
-                    <th>Timestamp</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Reading</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Room</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php                
-                foreach($data as $key => $value) {
-                    if ($key == "light") {
-                        echo "<tr>";
-                        echo "<td>";
-                        echo "Light";
-                        echo "</td>";
-                        if (isset($value['reading'])) {
-                            echo "<td>" . ($value['reading'] ? "On" : "Off") . "</td>";
-                        } else {
-                            echo "<td>-</td>";
-                        }
-                        if (isset($value['timestamp'])) {
-                            echo "<td>" . $value['timestamp'] . "</td>";
-                        } else {
-                            echo "<td>-</td>";
-                        }
-                        echo "</tr>";
-                    }
-                }
-                ?>
+            <tbody class="table-group-divider">
+                <?php foreach ($light as $row) { ?>
+                    <tr>
+                        <th scope="row"><?php echo $row['lightID'] ?></th>
+                        <td><?php echo $row['lightValue'] ?></td>
+                        <td>Time yazılacak</td>
+                        <td><?php echo $row['roomName'] ?></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
 
@@ -140,4 +123,5 @@
     </script>
 
 </body>
+
 </html>
