@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Producer Dashboard</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <header>
   <?php include("navbar.html"); ?>
 </header>

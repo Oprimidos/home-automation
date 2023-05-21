@@ -20,7 +20,7 @@ if(isset($_POST['login'])) {
 <head>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Producer Login</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="assets/css/login.css">
     <style>
       body {
         margin: 20px;
