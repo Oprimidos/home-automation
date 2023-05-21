@@ -4,7 +4,7 @@
     <title>Consumer Dashboard</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <header>
-        <?php include("navbar.html"); ?>
+        <?php include("navbar.php"); ?>
     </header>
 </head>
 <body>
