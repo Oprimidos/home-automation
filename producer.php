@@ -58,7 +58,7 @@
             </thead>
             <tbody>
                    <?php
-        $sensor_data = json_decode(file_get_contents('mock_data/sensor_readings.json'), true);
+        $sensor_data = json_decode(file_get_contents('<assets>mock_data/sensor_readings.json'), true);
              foreach ($sensor_data as $key => $reading) {
                  if ($key === "light") {
                       echo "<tr><td>" . ucfirst($key) . "</td><td>" . ($reading['reading'] ? "On" : "Off") . "</td><td>" . date('Y-m-d H:i:s', strtotime($reading['timestamp'])) . "</td></tr>";
