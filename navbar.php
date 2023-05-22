@@ -20,8 +20,8 @@
                 <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
             </div>
             <div class="nav right">
-                <a href="index.html" class="nav-link"><span class="nav-link-span"><span class="u-nav">Home</span></span></a>
-                <a href="index.html" class="nav-link"><span class="nav-link-span"><span class="u-nav">Logout</span></span></a>
+                <a href="index.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Home</span></span></a>
+                <a href="index.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Logout</span></span></a>
             </div>
         </nav>
     </header>
