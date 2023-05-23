@@ -4,7 +4,7 @@
     <title>Producer Dashboard</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <header>
-  <?php include("navbar.php"); ?>
+  <?php include("navbarP.php"); ?>
 </header>
 </head>
 
