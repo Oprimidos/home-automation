@@ -8,7 +8,7 @@ if(isset($_POST['login'])) {
     // Check if the entered credentials are correct
     if($username == 'admin' && $password == '12345') {
         $_SESSION['username'] = $username;
-        header("Location: producer.php");
+        header("Location: homeP.php");
         exit();
     } else {
         $error = "Invalid username or password!";
