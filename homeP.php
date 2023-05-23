@@ -5,7 +5,7 @@
     <title>Consumer Dashboard</title>
     <link rel="stylesheet" href="assets/css/home.css">
     <header>
-        <?php include("navbar.php"); ?>
+        <?php include("navbarP.php"); ?>
     </header>
    <style>
     body{background-image: url('./assets/images/house.jpg');}
