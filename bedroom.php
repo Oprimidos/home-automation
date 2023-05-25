@@ -3,10 +3,16 @@
 
 <head>
     <title>Consumer Dashboard</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/rooms.css">
     <header>
         <?php include("navbar.php"); ?>
     </header>
+    <style>
+    body{background-image: url('./assets/images/bedroom.jpg');}
+   
+
+
+        </style>
 </head>
 
 <body>
@@ -29,13 +35,14 @@
         <br>
         <br>
         <br>
-        <h1 style=" padding-top:30px; padding-bottom:30px;">Consumer Dashboard</h1>
+      
         
 
         <div class="card text-bg-dark">
-            <img src="assets/images/bedroom.jpg" class="card-img" alt="...">
+            
             <div class="card-img-overlay">
-                <h5 class="card-title bg-dark">BEDROOM</h5>
+            <h1 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center;">Consumer Dashboard</h1>
+                <h3 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center; ">BEDROOM</h3>
                 <?php  foreach($bedroom as $row){?>
                 <table class="table table-dark table-striped">
                     <thead>
