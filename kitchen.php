@@ -3,7 +3,7 @@
 
 <head>
     <title>Consumer Dashboard</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/rooms.css">
     <header>
         <?php include("navbar.php"); ?>
     </header>
