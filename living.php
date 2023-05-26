@@ -14,7 +14,7 @@
     </style>
 </head>
 
-<body>
+
 <body>
     <?php
     $sqlliving = "SELECT * FROM roomview WHERE roomID=1";
@@ -22,12 +22,6 @@
     $queryliving->execute();
     $living = $queryliving->fetchAll(PDO::FETCH_ASSOC);
 
-    $query = $db->prepare("UPDATE aircondition SET airTime=:airTime WHERE airID=:airID");
-    $currentTime = date("Y-m-d H:i:s");
-    $eklendi = $query->execute(array(
-        "airTime" => $currentTime,
-        "airID" => 4
-    ));
     ?>
     <div class="container" ">
         <br>
@@ -85,6 +79,5 @@
 
 </body>
 
-</body>
 
 </html>
