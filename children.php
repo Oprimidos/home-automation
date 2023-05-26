@@ -9,7 +9,7 @@
     </header>
     <style>
         body {
-            background-image: url('./assets/images/living.jpg');
+            background-image: url('./assets/images/children.jpg');
         }
     </style>
 </head>
