@@ -43,6 +43,16 @@
             "airID"=>4
         ));
     }
+    if($bedroom["lightValue"]=="ON"){
+        $kwh=$bedroom['lightKwh']+0.1;
+        $money=$kwh*0.2;
+        $energylight = $db->prepare("UPDATE light SET lightKwh=:lightKwh,lightMoney=:lightMoney WHERE lightID=:lightID");
+        $uptadelight= $energylight -> execute(array(
+            "lightKwh"=>$kwh,
+            "lightMoney"=>$money,
+            "lightID"=>4
+        ));
+    }
     ?>
     <div class="container" ">
         <br>
