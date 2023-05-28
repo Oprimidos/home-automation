@@ -12,15 +12,40 @@
             background-image: url('./assets/images/kitchen.jpg');
         }
     </style>
+    <script>
+        setTimeout(() => {
+            document.location.reload();
+        }, 10000);
+    </script>
 </head>
 
 <body>
     <?php
-    $sqlkitchen = "SELECT * FROM roomview WHERE roomID=2";
+    $sqlkitchen = "SELECT * FROM viewconsumer WHERE roomID=2";
     $querykitchen = $db->prepare($sqlkitchen);
     $querykitchen->execute();
-    $kitchen = $querykitchen->fetchAll(PDO::FETCH_ASSOC);
+    $kitchen = $querykitchen->fetch(PDO::FETCH_ASSOC);
 
+    if ($kitchen['airValue'] > 16) {
+        $kwh = $kitchen['airKwh'] + 0.2;
+        $money = $kwh * 0.2;
+        $energyair = $db->prepare("UPDATE aircondition SET airKwh=:airKwh,airMoney=:airMoney WHERE airID=:airID");
+        $uptadeair = $energyair->execute(array(
+            "airKwh" => $kwh,
+            "airMoney" => $money,
+            "airID" => 2
+        ));
+    }
+    if ($kitchen["lightValue"] == "ON") {
+        $kwh = $kitchen['lightKwh'] + 0.1;
+        $money = $kwh * 0.2;
+        $energylight = $db->prepare("UPDATE light SET lightKwh=:lightKwh,lightMoney=:lightMoney WHERE lightID=:lightID");
+        $uptadelight = $energylight->execute(array(
+            "lightKwh" => $kwh,
+            "lightMoney" => $money,
+            "lightID" => 2
+        ));
+    }
     ?>
     <div class="container" ">
         <br>
@@ -36,40 +61,47 @@
         <div class="card-img-overlay">
             <h1 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center;">Consumer Dashboard</h1>
             <h3 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center; ">KITCHEN</h3>
-            <?php foreach ($kitchen as $row) { ?>
-                <table class="table table-dark table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">SENSOR</th>
-                            <th scope="col">VALUE</th>
-                            <th scope="col">LAST CHANGE TIME</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row"><?php echo $row['airID'] ?></th>
-                            <td>AIR CONDITION</td>
-                            <td><?php echo $row['airValue'] ?></td>
-                            <td><?php echo $row['airTime'] ?></td>
 
-                        </tr>
-                        <tr>
-                            <th scope="row"><?php echo $row['heatID'] ?></th>
-                            <td>HEAT</td>
-                            <td><?php echo $row['heatValue'] ?></td>
-                            <td><?php echo $row['heatTime'] ?></td>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">SENSOR</th>
+                        <th scope="col">VALUE</th>
+                        <th scope="col">LAST CHANGE TIME</th>
+                        <th scope="col">ENERGY SPEND</th>
+                        <th scope="col">MONEY</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><?php echo $kitchen['airID'] ?></th>
+                        <td>AIR CONDITION</td>
+                        <td><?php echo $kitchen['airValue'] ?></td>
+                        <td><?php echo $kitchen['airTime'] ?></td>
+                        <td><?php echo $kitchen['airKwh'] ?> Kwh</td>
+                        <td><?php echo $kitchen['airMoney'] ?> $</td>
 
-                        </tr>
-                        <tr>
-                            <th scope="row"><?php echo $row['lightID'] ?></th>
-                            <td>LIGHT</td>
-                            <td><?php echo $row['lightValue'] ?></td>
-                            <td><?php echo $row['lightTime'] ?></td>
-                        </tr>
-                    </tbody>
-                </table>
-            <?php } ?>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php echo $kitchen['heatID'] ?></th>
+                        <td>HEAT</td>
+                        <td><?php echo $kitchen['heatValue'] ?></td>
+                        <td><?php echo $kitchen['heatTime'] ?></td>
+                        <td>NO ENERGY FOR THAT</td>
+                        <td>NO MONEY FOR THAT</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php echo $kitchen['lightID'] ?></th>
+                        <td>LIGHT</td>
+                        <td><?php echo $kitchen['lightValue'] ?></td>
+                        <td><?php echo $kitchen['lightTime'] ?></td>
+                        <td><?php echo $kitchen['lightKwh'] ?> Kwh</td>
+                        <td><?php echo $kitchen['lightMoney'] ?> $</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
