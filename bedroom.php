@@ -12,11 +12,44 @@
             background-image: url('./assets/images/bedroom.jpg');
         }
     </style>
+    <?php
+    $dataPoints = array();
+    $handle = $db->prepare('SELECT sensor,lightKwh from viewKwh WHERE lightRoomID=4');
+    $handle->execute();
+    $result = $handle->fetchAll(\PDO::FETCH_OBJ);
+    print_r($result);
+    foreach ($result as $row) {
+        array_push($dataPoints, array("label" => $row->sensor, "y" => $row->lightKwh));
+    }
+    print_r($dataPoints);
+
+    ?>
     <script>
-       setTimeout(() => {
+        setTimeout(() => {
             document.location.reload();
         }, 10000);
+
+        window.onload = function() {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                
+                title: {
+                    text: "HUMIDITY",
+                },
+                data: [{
+                    type: "pie",
+                    startAngle: 240,
+                    yValueFormatString: "##0.00\"%\"",
+                    indexLabel: "{label} {y}",
+                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                }]
+            });
+            chart.render();
+
+        }
     </script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 </head>
 
 <body>
@@ -26,7 +59,7 @@
     $querybedroom->execute();
     $bedroom = $querybedroom->fetch(PDO::FETCH_ASSOC);
 
-  /*  $query = $db->prepare("UPDATE aircondition SET airTime=:airTime WHERE airID=:airID");
+    /*  $query = $db->prepare("UPDATE aircondition SET airTime=:airTime WHERE airID=:airID");
     $currentTime = date("Y-m-d H:i:s");
     $eklendi = $query->execute(array(
         "airTime" => $currentTime,
@@ -34,23 +67,33 @@
     ));*/
 
     if ($bedroom['airValue'] > 16) {
-        $kwh=$bedroom['airKwh']+0.2;
-        $money=$kwh*0.2;
+        $kwh = $bedroom['airKwh'] + 0.2;
+        $money = $kwh * 0.2;
         $energyair = $db->prepare("UPDATE aircondition SET airKwh=:airKwh,airMoney=:airMoney WHERE airID=:airID");
-        $uptadeair= $energyair -> execute(array(
-            "airKwh"=>$kwh,
-            "airMoney"=>$money,
-            "airID"=>4
+        $uptadeair = $energyair->execute(array(
+            "airKwh" => $kwh,
+            "airMoney" => $money,
+            "airID" => 4
         ));
     }
-    if($bedroom["lightValue"]=="ON"){
-        $kwh=$bedroom['lightKwh']+0.1;
-        $money=$kwh*0.2;
+    if ($bedroom["lightValue"] == "ON") {
+        $kwh = $bedroom['lightKwh'] + 0.1;
+        $money = $kwh * 0.2;
         $energylight = $db->prepare("UPDATE light SET lightKwh=:lightKwh,lightMoney=:lightMoney WHERE lightID=:lightID");
-        $uptadelight= $energylight -> execute(array(
-            "lightKwh"=>$kwh,
-            "lightMoney"=>$money,
-            "lightID"=>4
+        $uptadelight = $energylight->execute(array(
+            "lightKwh" => $kwh,
+            "lightMoney" => $money,
+            "lightID" => 4
+        ));
+    }
+    if ($bedroom["humValue"] > 0) {
+        $kwh = $bedroom['humKwh'] + 0.05;
+        $money = $kwh * 0.2;
+        $energyhum = $db->prepare("UPDATE humidity SET humKwh=:humKwh,humMoney=:humMoney WHERE humID=:humID");
+        $uptadehum = $energyhum->execute(array(
+            "humKwh" => $kwh,
+            "humMoney" => $money,
+            "humID" => 4
         ));
     }
     ?>
@@ -68,48 +111,69 @@
         <div class="card-img-overlay">
             <h1 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center;">Consumer Dashboard</h1>
             <h3 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center; ">BEDROOM</h3>
-            <table class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">SENSOR</th>
-                        <th scope="col">VALUE</th>
-                        <th scope="col">LAST CHANGE TIME</th>
-                        <th scope="col">ENERGY SPEND</th>
-                        <th scope="col">MONEY SPEND</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row"><?php echo $bedroom['airID'] ?></th>
-                        <td>AIR CONDITION</td>
-                        <td><?php echo $bedroom['airValue'] ?></td>
-                        <td><?php echo $bedroom['airTime'] ?></td>
-                        <td><?php echo $bedroom['airKwh'] ?> Kwh</td>
-                        <td><?php echo $bedroom['airMoney']?> $</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><?php echo $bedroom['heatID'] ?></th>
-                        <td>HEAT</td>
-                        <td><?php echo $bedroom['heatValue'] ?></td>
-                        <td><?php echo $bedroom['heatTime'] ?></td>
-                        <td>NO ENEGRY FOR THAT</td>
-                        <td>NO MONEY FOR THAT</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><?php echo $bedroom['lightID'] ?></th>
-                        <td>LIGHT</td>
-                        <td><?php echo $bedroom['lightValue'] ?></td>
-                        <td><?php echo $bedroom['lightTime'] ?></td>
-                        <td><?php echo $bedroom['lightKwh'] ?> Kwh</td>
-                        <td><?php echo $bedroom['lightMoney']?> $</td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="row col-12">
+                <div class="col-8">
+                    <table class="table table-dark table-striped" style="height: 250px;">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">SENSOR</th>
+                                <th scope="col">VALUE</th>
+                                <th scope="col">LAST CHANGE TIME</th>
+                                <th scope="col">ENERGY SPEND</th>
+                                <th scope="col">MONEY SPEND</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"><?php echo $bedroom['airID'] ?></th>
+                                <td>AIR CONDITION</td>
+                                <td><?php echo $bedroom['airValue'] ?></td>
+                                <td><?php echo $bedroom['airTime'] ?></td>
+                                <td><?php echo $bedroom['airKwh'] ?> Kwh</td>
+                                <td><?php echo $bedroom['airMoney'] ?> $</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><?php echo $bedroom['heatID'] ?></th>
+                                <td>HEAT</td>
+                                <td><?php echo $bedroom['heatValue'] ?></td>
+                                <td><?php echo $bedroom['heatTime'] ?></td>
+                                <td>NO ENEGRY FOR THAT</td>
+                                <td>NO MONEY FOR THAT</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><?php echo $bedroom['lightID'] ?></th>
+                                <td>LIGHT</td>
+                                <td><?php echo $bedroom['lightValue'] ?></td>
+                                <td><?php echo $bedroom['lightTime'] ?></td>
+                                <td><?php echo $bedroom['lightKwh'] ?> Kwh</td>
+                                <td><?php echo $bedroom['lightMoney'] ?> $</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><?php echo $bedroom['humID'] ?></th>
+                                <td>HUMIDITY</td>
+                                <td><?php echo $bedroom['humValue'] ?></td>
+                                <td><?php echo $bedroom['humTime'] ?></td>
+                                <td><?php echo $bedroom['humKwh'] ?> Kwh</td>
+                                <td><?php echo $bedroom['humMoney'] ?> $</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-4">
+                    <div id="chartContainer" style="height: 250px; width: 100%;"></div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
     </div>
+
+
+
 
 
 </body>
