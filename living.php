@@ -12,11 +12,43 @@
             background-image: url('./assets/images/living.jpg');
         }
     </style>
+    <?php
+    $dataPoints = array();
+    $handle = $db->prepare('SELECT sensor,lightKwh from viewKwh WHERE lightRoomID=4');
+    $handle->execute();
+    $result = $handle->fetchAll(\PDO::FETCH_OBJ);
+    print_r($result);
+    foreach ($result as $row) {
+        array_push($dataPoints, array("label" => $row->sensor, "y" => $row->lightKwh));
+    }
+
+
+    ?>
     <script>
         setTimeout(() => {
             document.location.reload();
         }, 10000);
+        window.onload = function() {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+
+                title: {
+                    text: "ENERGY USED CHART FOR LIVING ROOM",
+                },
+                data: [{
+                    type: "pie",
+                    startAngle: 240,
+                    yValueFormatString: "##0.00\"%\"",
+                    indexLabel: "{label} {y}",
+                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                }]
+            });
+            chart.render();
+
+        }
     </script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 </head>
 
 
@@ -47,6 +79,16 @@
             "lightID" => 1
         ));
     }
+    if ($living["humValue"] > 0) {
+        $kwh = $living['humKwh'] + 0.05;
+        $money = $kwh * 0.2;
+        $energyhum = $db->prepare("UPDATE humidity SET humKwh=:humKwh,humMoney=:humMoney WHERE humID=:humID");
+        $uptadehum = $energyhum->execute(array(
+            "humKwh" => $kwh,
+            "humMoney" => $money,
+            "humID" => 1
+        ));
+    }
     ?>
     <div class="container" ">
         <br>
@@ -62,6 +104,8 @@
         <div class="card-img-overlay">
             <h1 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center;">Consumer Dashboard</h1>
             <h3 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center; ">LIVING ROOM</h3>
+            <div class="row col-12">
+                <div class="col-8">
             <table class="table table-dark table-striped">
                 <thead>
                     <tr>
@@ -100,9 +144,21 @@
                         <td><?php echo $living['lightKwh'] ?> Kwh</td>
                         <td><?php echo $living['lightMoney'] ?> $</td>
                     </tr>
+                    <tr>
+                                <th scope="row"><?php echo $living['humID'] ?></th>
+                                <td>HUMIDITY</td>
+                                <td><?php echo $living['humValue'] ?></td>
+                                <td><?php echo $living['humTime'] ?></td>
+                                <td><?php echo $living['humKwh'] ?> Kwh</td>
+                                <td><?php echo $living['humMoney'] ?> $</td>
+                            </tr>
                 </tbody>
             </table>
-
+            </div>
+                <div class="col-4">
+                    <div id="chartContainer" style="height: 250px; width: 100%;"></div>
+                </div>
+            </div>
         </div>
     </div>
 
