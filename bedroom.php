@@ -35,7 +35,7 @@
                 animationEnabled: true,
                 
                 title: {
-                    text: "HUMIDITY",
+                    text: "ENERGY USED CHART FOR BEDROOM",
                 },
                 data: [{
                     type: "pie",
