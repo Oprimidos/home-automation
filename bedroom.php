@@ -21,7 +21,7 @@
     foreach ($result as $row) {
         array_push($dataPoints, array("label" => $row->sensor, "y" => $row->lightKwh));
     }
-    print_r($dataPoints);
+    
 
     ?>
     <script>
