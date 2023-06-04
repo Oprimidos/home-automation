@@ -61,3 +61,47 @@ else if(isset($_POST['lighton'])){
     $handleLight->execute();
     header("Location:../".$_POST["link"]);
 }
+
+if (isset($_POST['humup'])) {
+
+    $handle = $db->prepare('SELECT humValue from humidity WHERE humRoomID=:roomID');
+    $handle->bindParam(':roomID', $_POST["roomID"]);
+    $handle->execute();
+    $result = $handle->fetch(\PDO::FETCH_ASSOC);
+    $newhumValue = 20;
+    $currentTimestamp = date('Y-m-d H:i:s');
+    if ($result["humValue"] == 0) {
+        $newhumValue = 20;
+    }elseif($result["humValue"]==80){
+        $newhumValue=80;
+    } 
+    else {
+        $newhumValue = $result["humValue"] + 1;
+    }
+    $handle = $db->prepare('UPDATE humidity SET humValue=:humValue,humTime=:humTime WHERE humRoomID = :roomID');
+    $handle->bindParam(':humValue', $newhumValue);
+    $handle->bindParam(':humTime', $currentTimestamp);
+    $handle->bindParam(':roomID', $_POST["roomID"]);
+    $handle->execute();
+    header("Location:../".$_POST["link"]);
+} elseif (isset($_POST['humdown'])) {
+    $handle = $db->prepare('SELECT humValue from humidity WHERE humRoomID=:roomID');
+    $handle->bindParam(':roomID', $_POST["roomID"]);
+    $handle->execute();
+    $result = $handle->fetch(\PDO::FETCH_ASSOC);
+    $newhumValue = 20;
+    $currentTimestamp = date('Y-m-d H:i:s');
+    if($result["humValue"]!=0){
+        if ($result["humValue"] == 20) {
+            $newhumValue = 0;
+        } else {
+            $newhumValue = $result["humValue"] -1;
+        }
+        $handle = $db->prepare('UPDATE humidity SET humValue=:humValue,humTime=:humTime WHERE humRoomID = :roomID');
+        $handle->bindParam(':humValue', $newhumValue);
+        $handle->bindParam(':humTime', $currentTimestamp);
+        $handle->bindParam(':roomID', $_POST["roomID"]);
+        $handle->execute(); 
+    }
+    header("Location:../".$_POST["link"]);
+}

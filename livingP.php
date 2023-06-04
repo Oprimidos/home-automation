@@ -90,13 +90,17 @@
                         <tr>
                             <th scope="row"><?php echo $living['humID'] ?></th>
                             <td>HUMIDITY</td>
-                            <td><?php echo $living['humValue'] ?></td>
+                            <td>%<?php echo $living['humValue'] ?></td>
                             <td><?php echo $living['humTime'] ?></td>
                             <td><?php echo $living['humKwh'] ?> Kwh</td>
                             <td><?php echo $living['humMoney'] ?> $</td>
                             <td>
-                                <button type="button" class="btn btn-primary">Increase</button>
-                                <button type="button" class="btn btn-danger">Decrease</button>
+                            <form action="config/operation.php" method="post">
+                                <button type="submit" class="btn btn-primary" value="humup" name="humup">Increase</button>
+                                <button type="submit" class="btn btn-danger" value="humdown" name="humdown">Decrease</button>
+                                <input type="hidden" name="roomID" value="<?php echo $living['humRoomID']?>">
+                                <input type="hidden" name="link" value="livingP.php">
+                            </form>
                             </td>
                         </tr>
                     </tbody>
