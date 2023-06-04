@@ -2,6 +2,7 @@
 <?php
 include("connectdb.php");
 
+
 $sqlbedroom = "SELECT * FROM viewconsumer WHERE roomID=4";
 $querybedroom = $db->prepare($sqlbedroom);
 $querybedroom->execute();
@@ -154,22 +155,23 @@ for ($i = 1; $i <= 4; $i++) {
     $handlepull->execute();
     $result = $handlepull->fetch(\PDO::FETCH_ASSOC);
     $roomTemp = $result["heatValue"];
-
     $fanTemp = $result["airValue"];
-    echo $fanTemp;
-
     if ($fanTemp > 0) {
         if ($roomTemp > $fanTemp) {
             $newRoomTemp = $roomTemp - 1;
-            $handle = $db->prepare('UPDATE heat SET heatValue=:heatValue WHERE heatRoomID = :heatRoomID');
+            $handle = $db->prepare('UPDATE heat SET heatValue=:heatValue,heatTime=:heatTime WHERE heatRoomID = :heatRoomID');
             $handle->bindParam(':heatValue', $newRoomTemp);
+            $currentTimestamp = date('Y-m-d H:i:s');
+            $handle->bindParam(':heatTime', $currentTimestamp);
             $handle->bindParam(':heatRoomID', $i);
 
             $handle->execute();
         } else {
             $newRoomTemp = $roomTemp + 1;
-            $handle = $db->prepare('UPDATE heat SET heatValue=:heatValue WHERE heatRoomID = :heatRoomID');
+            $handle = $db->prepare('UPDATE heat SET heatValue=:heatValue,heatTime=:heatTime WHERE heatRoomID = :heatRoomID');
             $handle->bindParam(':heatValue', $newRoomTemp);
+            $currentTimestamp = date('Y-m-d H:i:s');
+            $handle->bindParam(':heatTime', $currentTimestamp);
             $handle->bindParam(':heatRoomID', $i);
             $handle->execute();
         }
@@ -187,7 +189,9 @@ for ($i = 1; $i <= 4; $i++) {
         $randomIndex = array_rand($options);
         $randomValue = $options[$randomIndex];
         $newHumValue = $humValue + $randomValue;
-        $handle = $db->prepare('UPDATE humidity SET humValue=:humValue WHERE humRoomID = :humRoomID');
+        $handle = $db->prepare('UPDATE humidity SET humValue=:humValue,humTime=:humTime WHERE humRoomID = :humRoomID');
+        $currentTimestamp = date('Y-m-d H:i:s');
+        $handle->bindParam(':humTime', $currentTimestamp);
         $handle->bindParam(':humValue', $newHumValue);
         $handle->bindParam(':humRoomID', $i);
         $handle->execute();
@@ -198,6 +202,8 @@ for ($i = 1; $i <= 4; $i++) {
         $newHumValue = $humValue + $randomValue;
         $handle = $db->prepare('UPDATE humidity SET humValue=:humValue WHERE humRoomID = :humRoomID');
         $handle->bindParam(':humValue', $newHumValue);
+        $currentTimestamp = date('Y-m-d H:i:s');
+        $handle->bindParam(':humTime', $currentTimestamp);
         $handle->bindParam(':humRoomID', $i);
         $handle->execute();
     }
