@@ -154,19 +154,18 @@ for ($i = 1; $i <= 4; $i++) {
     $handlepull->execute();
     $result = $handlepull->fetch(\PDO::FETCH_ASSOC);
     $roomTemp = $result["heatValue"];
-    
+
     $fanTemp = $result["airValue"];
     echo $fanTemp;
-    
+
     if ($fanTemp > 0) {
         if ($roomTemp > $fanTemp) {
             $newRoomTemp = $roomTemp - 1;
             $handle = $db->prepare('UPDATE heat SET heatValue=:heatValue WHERE heatRoomID = :heatRoomID');
             $handle->bindParam(':heatValue', $newRoomTemp);
             $handle->bindParam(':heatRoomID', $i);
-            
+
             $handle->execute();
-            
         } else {
             $newRoomTemp = $roomTemp + 1;
             $handle = $db->prepare('UPDATE heat SET heatValue=:heatValue WHERE heatRoomID = :heatRoomID');
@@ -174,5 +173,32 @@ for ($i = 1; $i <= 4; $i++) {
             $handle->bindParam(':heatRoomID', $i);
             $handle->execute();
         }
+    }
+}
+
+for ($i = 1; $i <= 4; $i++) {
+    $handlepull = $db->prepare('SELECT humValue from humidity WHERE humRoomID=:roomID');
+    $handlepull->bindParam(':roomID', $i);
+    $handlepull->execute();
+    $result = $handlepull->fetch(\PDO::FETCH_ASSOC);
+    $humValue = $result["humValue"];
+    if ($humValue > 28) {
+        $options = array(1, 2, 3, -1, -2, -3);
+        $randomIndex = array_rand($options);
+        $randomValue = $options[$randomIndex];
+        $newHumValue = $humValue + $randomValue;
+        $handle = $db->prepare('UPDATE humidity SET humValue=:humValue WHERE humRoomID = :humRoomID');
+        $handle->bindParam(':humValue', $newHumValue);
+        $handle->bindParam(':humRoomID', $i);
+        $handle->execute();
+    } elseif ($humValue > 20) {
+        $options = array(1, 2, 3, 4, 5, 6);
+        $randomIndex = array_rand($options);
+        $randomValue = $options[$randomIndex];
+        $newHumValue = $humValue + $randomValue;
+        $handle = $db->prepare('UPDATE humidity SET humValue=:humValue WHERE humRoomID = :humRoomID');
+        $handle->bindParam(':humValue', $newHumValue);
+        $handle->bindParam(':humRoomID', $i);
+        $handle->execute();
     }
 }
