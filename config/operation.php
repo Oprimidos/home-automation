@@ -40,3 +40,24 @@ if (isset($_POST['airup'])) {
     }
     header("Location:../".$_POST["link"]);
 }
+
+if (isset($_POST['lightoff'])) {
+    $value="OFF";
+    $handleLight = $db->prepare('UPDATE light SET lightValue=:lightValue,lightTime=:lightTime WHERE lightRoomID = :roomID');
+    $handleLight->bindParam(':lightValue', $value);
+    $currentTimestamp = date('Y-m-d H:i:s');
+    $handleLight->bindParam(':lightTime', $currentTimestamp);
+    $handleLight->bindParam(':roomID', $_POST["roomID"]);
+    $handleLight->execute();
+    header("Location:../".$_POST["link"]);
+}
+else if(isset($_POST['lighton'])){
+    $value="ON";
+    $handleLight = $db->prepare('UPDATE light SET lightValue=:lightValue,lightTime=:lightTime WHERE lightRoomID = :roomID');
+    $handleLight->bindParam(':lightValue', $value);
+    $currentTimestamp = date('Y-m-d H:i:s');
+    $handleLight->bindParam(':lightTime', $currentTimestamp);
+    $handleLight->bindParam(':roomID', $_POST["roomID"]);
+    $handleLight->execute();
+    header("Location:../".$_POST["link"]);
+}

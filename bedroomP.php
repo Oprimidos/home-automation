@@ -79,8 +79,12 @@
                             <td><?php echo $bedroom['lightKwh'] ?> Kwh</td>
                             <td><?php echo $bedroom['lightMoney'] ?> $</td>
                             <td scope="col">
-                                <button type="submit" class="btn btn-primary">On</button> 
-                                <button type="button" class="btn btn-danger">Off</button>
+                            <form action="config/operation.php" method="post">
+                                <button type="submit" class="btn btn-primary" name="lighton">On</button> 
+                                <button type="submit" class="btn btn-danger" name="lightoff">Off</button>
+                                <input type="hidden" name="roomID" value="<?php echo $bedroom['lightRoomID']?>">
+                                <input type="hidden" name="link" value="bedroomP.php">
+                                </form>
                             </td>
                         </tr>
                         <tr>
