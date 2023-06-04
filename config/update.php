@@ -207,4 +207,16 @@ for ($i = 1; $i <= 4; $i++) {
         $handle->bindParam(':humRoomID', $i);
         $handle->execute();
     }
+    elseif($humValue>70){
+        $options = array(-1, -2, -3, -4, -5, -6);
+        $randomIndex = array_rand($options);
+        $randomValue = $options[$randomIndex];
+        $newHumValue = $humValue + $randomValue;
+        $handle = $db->prepare('UPDATE humidity SET humValue=:humValue,humTime=:humTime WHERE humRoomID = :humRoomID');
+        $handle->bindParam(':humValue', $newHumValue);
+        $currentTimestamp = date('Y-m-d H:i:s');
+        $handle->bindParam(':humTime', $currentTimestamp);
+        $handle->bindParam(':humRoomID', $i);
+        $handle->execute();
+    }
 }
