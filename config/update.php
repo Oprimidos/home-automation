@@ -149,23 +149,26 @@ if ($living["humValue"] > 0) {
 }
 
 for ($i = 1; $i <= 4; $i++) {
-    $handle = $db->prepare('SELECT aa.airValue, h.heatValue,h.heatRoomID from heat h,aircondition aa WHERE heatRoomID=:roomID');
-    $handle->bindParam(':roomID', $i);
-    $handle->execute();
-    $result = $handle->fetch(\PDO::FETCH_ASSOC);
+    $handlepull = $db->prepare('SELECT airValue, heatValue,roomID from viewconsumer WHERE roomID=:roomID');
+    $handlepull->bindParam(':roomID', $i);
+    $handlepull->execute();
+    $result = $handlepull->fetch(\PDO::FETCH_ASSOC);
     $roomTemp = $result["heatValue"];
+    
     $fanTemp = $result["airValue"];
+    echo $fanTemp;
+    
     if ($fanTemp > 0) {
         if ($roomTemp > $fanTemp) {
             $newRoomTemp = $roomTemp - 1;
-
             $handle = $db->prepare('UPDATE heat SET heatValue=:heatValue WHERE heatRoomID = :heatRoomID');
             $handle->bindParam(':heatValue', $newRoomTemp);
             $handle->bindParam(':heatRoomID', $i);
+            
             $handle->execute();
+            
         } else {
             $newRoomTemp = $roomTemp + 1;
-            $roomId = 1;
             $handle = $db->prepare('UPDATE heat SET heatValue=:heatValue WHERE heatRoomID = :heatRoomID');
             $handle->bindParam(':heatValue', $newRoomTemp);
             $handle->bindParam(':heatRoomID', $i);
