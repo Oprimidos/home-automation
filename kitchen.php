@@ -25,9 +25,6 @@
 
     ?>
     <script>
-        setTimeout(() => {
-            document.location.reload();
-        }, 10000);
         window.onload = function() {
 
             var chart = new CanvasJS.Chart("chartContainer", {
@@ -57,37 +54,6 @@
     $querykitchen = $db->prepare($sqlkitchen);
     $querykitchen->execute();
     $kitchen = $querykitchen->fetch(PDO::FETCH_ASSOC);
-
-    if ($kitchen['airValue'] > 16) {
-        $kwh = $kitchen['airKwh'] + 0.2;
-        $money = $kwh * 0.2;
-        $energyair = $db->prepare("UPDATE aircondition SET airKwh=:airKwh,airMoney=:airMoney WHERE airID=:airID");
-        $uptadeair = $energyair->execute(array(
-            "airKwh" => $kwh,
-            "airMoney" => $money,
-            "airID" => 2
-        ));
-    }
-    if ($kitchen["lightValue"] == "ON") {
-        $kwh = $kitchen['lightKwh'] + 0.1;
-        $money = $kwh * 0.2;
-        $energylight = $db->prepare("UPDATE light SET lightKwh=:lightKwh,lightMoney=:lightMoney WHERE lightID=:lightID");
-        $uptadelight = $energylight->execute(array(
-            "lightKwh" => $kwh,
-            "lightMoney" => $money,
-            "lightID" => 2
-        ));
-    }
-    if ($kitchen["humValue"] > 0) {
-        $kwh = $kitchen['humKwh'] + 0.05;
-        $money = $kwh * 0.2;
-        $energyhum = $db->prepare("UPDATE humidity SET humKwh=:humKwh,humMoney=:humMoney WHERE humID=:humID");
-        $uptadehum = $energyhum->execute(array(
-            "humKwh" => $kwh,
-            "humMoney" => $money,
-            "humID" => 2
-        ));
-    }
     ?>
     <div class="container" ">
         <br>
