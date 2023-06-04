@@ -191,7 +191,7 @@ for ($i = 1; $i <= 4; $i++) {
         $handle->bindParam(':humValue', $newHumValue);
         $handle->bindParam(':humRoomID', $i);
         $handle->execute();
-    } elseif ($humValue > 20) {
+    } elseif ($humValue <= 28) {
         $options = array(1, 2, 3, 4, 5, 6);
         $randomIndex = array_rand($options);
         $randomValue = $options[$randomIndex];
