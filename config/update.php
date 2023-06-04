@@ -200,7 +200,7 @@ for ($i = 1; $i <= 4; $i++) {
         $randomIndex = array_rand($options);
         $randomValue = $options[$randomIndex];
         $newHumValue = $humValue + $randomValue;
-        $handle = $db->prepare('UPDATE humidity SET humValue=:humValue WHERE humRoomID = :humRoomID');
+        $handle = $db->prepare('UPDATE humidity SET humValue=:humValue,humTime=:humTime WHERE humRoomID = :humRoomID');
         $handle->bindParam(':humValue', $newHumValue);
         $currentTimestamp = date('Y-m-d H:i:s');
         $handle->bindParam(':humTime', $currentTimestamp);
