@@ -53,8 +53,12 @@
                             <td><?php echo $kitchen['airKwh'] ?> Kwh</td>
                             <td><?php echo $kitchen['airMoney'] ?> $</td>
                             <td>
-                                <button type="button" class="btn btn-primary">Increase</button>
-                                <button type="button" class="btn btn-danger">Decrease</button>
+                            <form action="config/operation.php" method="post">
+                                <button type="submit" class="btn btn-primary" value="airup" name="airup">Increase</button>
+                                <button type="submit" class="btn btn-danger" value="airdown" name="airdown">Decrease</button>
+                                <input type="hidden" name="roomID" value="<?php echo $kitchen['airRoomID']?>">
+                                <input type="hidden" name="link" value="kitchenP.php">
+                            </form>
                             </td>
                         </tr>
 

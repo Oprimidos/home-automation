@@ -53,11 +53,15 @@
                             <td><?php echo $bedroom['airKwh'] ?> Kwh</td>
                             <td><?php echo $bedroom['airMoney'] ?> $</td>
                             <td>
-                                <button type="button" class="btn btn-primary">Increase</button>
-                                <button type="button" class="btn btn-danger">Decrease</button>
+                                <form action="config/operation.php" method="post">
+                                <button type="submit" class="btn btn-primary" value="airup" name="airup">Increase</button>
+                                <button type="submit" class="btn btn-danger" value="airdown" name="airdown">Decrease</button>
+                                <input type="hidden" name="roomID" value="<?php echo $bedroom['airRoomID']?>">
+                                <input type="hidden" name="link" value="bedroomP.php">
+                            </form>
                             </td>
                         </tr>
-
+                        
                         <tr>
                             <th scope="row"><?php echo $bedroom['heatID'] ?></th>
                             <td>HEAT</td>
