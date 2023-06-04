@@ -17,7 +17,6 @@
     $handle = $db->prepare('SELECT sensor,lightKwh from viewKwh WHERE lightRoomID=3');
     $handle->execute();
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
-    print_r($result);
     foreach ($result as $row) {
         array_push($dataPoints, array("label" => $row->sensor, "y" => $row->lightKwh));
     }
