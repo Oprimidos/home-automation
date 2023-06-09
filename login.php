@@ -1,20 +1,5 @@
 <?php
-session_start();
-
-if(isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Check if the entered credentials are correct
-    if($username == 'admin' && $password == '12345') {
-        $_SESSION['username'] = $username;
-        header("Location: home.php");
-        exit();
-    } else {
-        $error = "Invalid username or password!";
-    }
-}
-?>
+session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,16 +21,16 @@ if(isset($_POST['login'])) {
             <p class="error"><?php echo $error; ?></p>
         <?php } ?>
         <div class="login-form">
-            <form class="login" method="POST" action="">
+            <form class="login" method="POST" action="config/loginuser.php">
                 <div class="form-group">
                 <h1>Consumer Login</h1>
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" value="admin" required>
+                    <input type="text" id="username" name="userName" value="admin" required>
                 </div>
 <br>
                 <div class="form-group">
                     <label for="password">Password:&nbsp;</label>
-                    <input type="password" id="password" name="password" value="12345"required>
+                    <input type="password" id="password" name="userPassword" value="12345"required>
                 </div>
                 <button type="submit" name="login" value="Login">Login</button>
             </form>

@@ -17,7 +17,7 @@
     <?php include("config/connectdb.php") ?>
     <?php include("config/update.php"); ?>
     <?php
-    if (strlen($_SESSION["username"]) == 0) {
+    if (strlen($_SESSION["userName"]) == 0) {
         session_destroy();
         header("Location:login.php?islem=no");
     } ?>
@@ -31,6 +31,7 @@
                 <span class="gradient skew"><a href="assets/images/M^2-1.png"></a><img src="assets/images/M^2-1.png" alt="#" /></span>
                 <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
             </div>
+            
             <div class="nav right">
                 <a href="home.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Home</span></span></a>
                 <a href="config/logout.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Logout</span></span></a>
