@@ -43,10 +43,10 @@ $say = $usersor->rowCount();
     echo $say;
     if($say==1){
         $_SESSION["userName"]=$usergetir["userName"];
-        header("Location:../homeP.php");
+        header("Location:../home.php");
     }
     else{
-        header("Location:../loginP.php?islem=no");
+        header("Location:../login.php?islem=no");
 
     }
     
