@@ -34,7 +34,7 @@
             </div>
             <div class="nav right">
                 <a href="homeP.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Home</span></span></a>
-                <a href="index.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Logout</span></span></a>
+                <a href="config/logout.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Logout</span></span></a>
             </div>
         </nav>
     </header>
