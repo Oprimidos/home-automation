@@ -16,6 +16,11 @@
     </script>
     <?php include("config/connectdb.php") ?>
     <?php include("config/update.php");?>
+    <?php
+    if (strlen($_SESSION["username"]) == 0) {
+        session_destroy();
+        header("Location:loginP.php?islem=no");
+    } ?>
 </head>
 </head>
 

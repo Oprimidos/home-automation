@@ -15,15 +15,20 @@
         }, 10000);
     </script>
     <?php include("config/connectdb.php") ?>
-    <?php include("config/update.php");?>
+    <?php include("config/update.php"); ?>
+    <?php
+    if (strlen($_SESSION["username"]) == 0) {
+        session_destroy();
+        header("Location:login.php?islem=no");
+    } ?>
 </head>
 
 <body>
-    
+
     <header id="nav-wrapper">
         <nav id="nav">
             <div class="nav left">
-                <span class="gradient skew"><a href="assets/images/M^2-1.png"></a><img src="assets/images/M^2-1.png" alt="#"/></span>
+                <span class="gradient skew"><a href="assets/images/M^2-1.png"></a><img src="assets/images/M^2-1.png" alt="#" /></span>
                 <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
             </div>
             <div class="nav right">
