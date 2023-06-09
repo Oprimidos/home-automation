@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 04 Haz 2023, 15:06:22
+-- Üretim Zamanı: 09 Haz 2023, 13:42:07
 -- Sunucu sürümü: 10.4.25-MariaDB
 -- PHP Sürümü: 8.1.10
 
@@ -41,10 +41,10 @@ CREATE TABLE `aircondition` (
 --
 
 INSERT INTO `aircondition` (`airID`, `airValue`, `airTime`, `airKwh`, `airMoney`, `airRoomID`) VALUES
-(1, 24, '2023-06-04 10:41:35', 204, 40.8, 1),
-(2, 40, '2023-05-23 21:00:00', 158.8, 31.76, 2),
-(3, 40, '2023-05-23 21:00:00', 156.4, 31.28, 3),
-(4, 28, '2023-06-04 11:19:15', 160.8, 32.16, 4);
+(1, 24, '2023-06-04 10:41:35', 366, 73.2, 1),
+(2, 40, '2023-05-23 21:00:00', 320.8, 64.16, 2),
+(3, 40, '2023-05-23 21:00:00', 318.4, 63.68, 3),
+(4, 28, '2023-06-04 11:19:15', 322.8, 64.56, 4);
 
 -- --------------------------------------------------------
 
@@ -64,10 +64,10 @@ CREATE TABLE `heat` (
 --
 
 INSERT INTO `heat` (`heatID`, `heatValue`, `heatTime`, `heatRoomID`) VALUES
-(1, 24, '2023-06-04 12:47:51', 1),
-(2, 40, '2023-06-04 12:47:51', 2),
-(3, 40, '2023-06-04 12:47:51', 3),
-(4, 28, '2023-06-04 12:47:51', 4);
+(1, 24, '2023-06-09 11:41:37', 1),
+(2, 40, '2023-06-09 11:41:37', 2),
+(3, 40, '2023-06-09 11:41:37', 3),
+(4, 28, '2023-06-09 11:41:37', 4);
 
 -- --------------------------------------------------------
 
@@ -89,10 +89,10 @@ CREATE TABLE `humidity` (
 --
 
 INSERT INTO `humidity` (`humID`, `humValue`, `humTime`, `humKwh`, `humMoney`, `humRoomID`) VALUES
-(1, 52, '2023-06-04 12:47:51', 39.85, 7.97, 1),
-(2, 103, '2023-06-04 12:47:51', 39.1, 7.82, 2),
-(3, 55, '2023-06-04 12:47:51', 38.75, 7.75, 3),
-(4, 80, '2023-06-04 12:47:51', 46.45, 9.29, 4);
+(1, 42, '2023-06-09 11:41:37', 80.35, 16.07, 1),
+(2, 113, '2023-06-09 11:41:37', 79.6, 15.92, 2),
+(3, 68, '2023-06-09 11:41:37', 79.25, 15.85, 3),
+(4, 225, '2023-06-09 11:41:37', 86.95, 17.39, 4);
 
 -- --------------------------------------------------------
 
@@ -116,8 +116,8 @@ CREATE TABLE `light` (
 INSERT INTO `light` (`lightID`, `lightValue`, `lightTime`, `lightKwh`, `lightMoney`, `lightRoomID`) VALUES
 (1, 'OFF', '2023-06-04 10:55:59', 5.3, 1.06, 1),
 (2, 'OFF', '2023-06-04 10:56:06', 48, 9.6, 2),
-(3, 'ON', '2023-06-04 10:56:19', 80.5, 16.1, 3),
-(4, 'ON', '2023-06-04 10:54:49', 92.8, 18.56, 4);
+(3, 'ON', '2023-06-04 10:56:19', 161.5, 32.3, 3),
+(4, 'ON', '2023-06-04 10:54:49', 173.8, 34.76, 4);
 
 -- --------------------------------------------------------
 
@@ -143,18 +143,23 @@ INSERT INTO `room` (`roomID`, `roomName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı durumu `viewchart`
--- (Asıl görünüm için aşağıya bakın)
+-- Tablo için tablo yapısı `users`
 --
-CREATE TABLE `viewchart` (
-`humID` int(10)
-,`humValue` int(100)
-,`humTime` timestamp
-,`humKwh` float
-,`humMoney` float
-,`humRoomID` int(100)
-,`roomName` varchar(255)
-);
+
+CREATE TABLE `users` (
+  `userID` int(4) NOT NULL,
+  `userName` varchar(255) NOT NULL,
+  `userPassword` varchar(255) NOT NULL,
+  `userType` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `users`
+--
+
+INSERT INTO `users` (`userID`, `userName`, `userPassword`, `userType`) VALUES
+(1, 'admin', '12345', 'Producer'),
+(2, 'admin', '12345', 'Consumer');
 
 -- --------------------------------------------------------
 
@@ -204,38 +209,6 @@ CREATE TABLE `viewkwh` (
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı durumu `viewprocuder`
--- (Asıl görünüm için aşağıya bakın)
---
-CREATE TABLE `viewprocuder` (
-`roomID` int(2)
-,`roomName` varchar(255)
-,`airID` int(2)
-,`airValue` int(3)
-,`airTime` timestamp
-,`airRoomID` int(2)
-,`lightID` int(2)
-,`lightValue` varchar(10)
-,`lightTime` timestamp
-,`lightRoomID` int(2)
-,`heatID` int(2)
-,`heatValue` int(3)
-,`heatTime` timestamp
-,`heatRoomID` int(2)
-);
-
--- --------------------------------------------------------
-
---
--- Görünüm yapısı `viewchart`
---
-DROP TABLE IF EXISTS `viewchart`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewchart`  AS SELECT `h`.`humID` AS `humID`, `h`.`humValue` AS `humValue`, `h`.`humTime` AS `humTime`, `h`.`humKwh` AS `humKwh`, `h`.`humMoney` AS `humMoney`, `h`.`humRoomID` AS `humRoomID`, `r`.`roomName` AS `roomName` FROM (`humidity` `h` join `room` `r` on(`h`.`humRoomID` = `r`.`roomID`))  ;
-
--- --------------------------------------------------------
-
---
 -- Görünüm yapısı `viewconsumer`
 --
 DROP TABLE IF EXISTS `viewconsumer`;
@@ -250,15 +223,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `viewkwh`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewkwh`  AS SELECT 'light' AS `sensor`, `light`.`lightKwh` AS `lightKwh`, `light`.`lightRoomID` AS `lightRoomID` FROM `light` union all select 'air' AS `sensor`,`aircondition`.`airKwh` AS `airKwh`,`aircondition`.`airRoomID` AS `airRoomID` from `aircondition` union all select 'humidity' AS `sensor`,`humidity`.`humKwh` AS `humKwh`,`humidity`.`humRoomID` AS `humRoomID` from `humidity`  ;
-
--- --------------------------------------------------------
-
---
--- Görünüm yapısı `viewprocuder`
---
-DROP TABLE IF EXISTS `viewprocuder`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewprocuder`  AS SELECT `r`.`roomID` AS `roomID`, `r`.`roomName` AS `roomName`, `a`.`airID` AS `airID`, `a`.`airValue` AS `airValue`, `a`.`airTime` AS `airTime`, `a`.`airRoomID` AS `airRoomID`, `l`.`lightID` AS `lightID`, `l`.`lightValue` AS `lightValue`, `l`.`lightTime` AS `lightTime`, `l`.`lightRoomID` AS `lightRoomID`, `h`.`heatID` AS `heatID`, `h`.`heatValue` AS `heatValue`, `h`.`heatTime` AS `heatTime`, `h`.`heatRoomID` AS `heatRoomID` FROM (((`room` `r` left join `aircondition` `a` on(`r`.`roomID` = `a`.`airRoomID`)) left join `light` `l` on(`r`.`roomID` = `l`.`lightRoomID`)) left join `heat` `h` on(`r`.`roomID` = `h`.`heatRoomID`))  ;
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -296,6 +260,22 @@ ALTER TABLE `light`
 --
 ALTER TABLE `room`
   ADD PRIMARY KEY (`roomID`);
+
+--
+-- Tablo için indeksler `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`userID`);
+
+--
+-- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
+--
+
+--
+-- Tablo için AUTO_INCREMENT değeri `users`
+--
+ALTER TABLE `users`
+  MODIFY `userID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
