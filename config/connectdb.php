@@ -1,5 +1,8 @@
 <?php
+
+if(!isset($_SESSION)){
 session_start();
+}
 date_default_timezone_set('Europe/Istanbul');
 try{
 	$db=new PDO("mysql:host=localhost;dbname=home_automation_db","root","");
