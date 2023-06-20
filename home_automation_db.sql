@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 20 Haz 2023, 13:15:07
+-- Üretim Zamanı: 20 Haz 2023, 15:44:54
 -- Sunucu sürümü: 10.4.25-MariaDB
 -- PHP Sürümü: 8.1.10
 
@@ -38,7 +38,30 @@ CREATE TABLE `home` (
 --
 
 INSERT INTO `home` (`homeID`, `homeName`, `homePhoto`) VALUES
-(1, 'Mustafa\'s Home', 'home1.png');
+(1, 'Mustafa\'s Home', './assets/images/house.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `photos`
+--
+
+CREATE TABLE `photos` (
+  `photoID` int(4) NOT NULL,
+  `photoName` varchar(255) NOT NULL,
+  `photoUrl` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `photos`
+--
+
+INSERT INTO `photos` (`photoID`, `photoName`, `photoUrl`) VALUES
+(1, 'Living Room', './assets/images/living.jpg'),
+(2, 'Bathroom', './assets/images/bathroom.jpg'),
+(3, 'Bedroom', './assets/images/bedroom.jpg'),
+(4, 'Children Room', './assets/images/children.jpg'),
+(5, 'Kitchen', './assets/images/kitchen.jpg');
 
 -- --------------------------------------------------------
 
@@ -74,10 +97,11 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`roomID`, `roomName`, `roomPhoto`, `homeID`) VALUES
-(1, 'Living', '', 1),
-(2, 'Kitchen', '', 1),
-(3, 'Children Room', '', 1),
-(4, 'Bedroom', '', 1);
+(0, 'Bathroom', './assets/images/bathroom.jpg', 1),
+(1, 'Living', './assets/images/living.jpg', 1),
+(2, 'Kitchen', './assets/images/kitchen.jpg', 1),
+(3, 'Children Room', './assets/images/children.jpg', 1),
+(4, 'Bedroom', './assets/images/bedroom.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -138,8 +162,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `userFirstName`, `userLastName`, `userMail`, `userPassword`, `userType`, `userHomeID`) VALUES
-(1, '', '', 'admin', '12345', 'Producer', 1),
-(2, '', '', 'admin', '12345', 'Consumer', 1);
+(1, 'Mustafa ', 'ESEN', 'admin', '12345', 'Producer', 1),
+(2, 'Mazlum', 'ARCANLI', 'admin', '12345', 'Consumer', 1);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -150,6 +174,12 @@ INSERT INTO `users` (`userID`, `userFirstName`, `userLastName`, `userMail`, `use
 --
 ALTER TABLE `home`
   ADD PRIMARY KEY (`homeID`);
+
+--
+-- Tablo için indeksler `photos`
+--
+ALTER TABLE `photos`
+  ADD PRIMARY KEY (`photoID`);
 
 --
 -- Tablo için indeksler `register`
@@ -181,6 +211,12 @@ ALTER TABLE `users`
 --
 -- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
 --
+
+--
+-- Tablo için AUTO_INCREMENT değeri `photos`
+--
+ALTER TABLE `photos`
+  MODIFY `photoID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `register`
