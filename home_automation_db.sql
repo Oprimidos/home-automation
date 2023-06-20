@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 09 Haz 2023, 13:42:07
+-- Üretim Zamanı: 20 Haz 2023, 13:15:07
 -- Sunucu sürümü: 10.4.25-MariaDB
 -- PHP Sürümü: 8.1.10
 
@@ -24,100 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `aircondition`
+-- Tablo için tablo yapısı `home`
 --
 
-CREATE TABLE `aircondition` (
-  `airID` int(2) NOT NULL,
-  `airValue` int(3) DEFAULT NULL,
-  `airTime` timestamp NULL DEFAULT NULL,
-  `airKwh` float NOT NULL,
-  `airMoney` float NOT NULL,
-  `airRoomID` int(2) DEFAULT NULL
+CREATE TABLE `home` (
+  `homeID` int(4) NOT NULL,
+  `homeName` varchar(255) NOT NULL,
+  `homePhoto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Tablo döküm verisi `aircondition`
+-- Tablo döküm verisi `home`
 --
 
-INSERT INTO `aircondition` (`airID`, `airValue`, `airTime`, `airKwh`, `airMoney`, `airRoomID`) VALUES
-(1, 24, '2023-06-04 10:41:35', 366, 73.2, 1),
-(2, 40, '2023-05-23 21:00:00', 320.8, 64.16, 2),
-(3, 40, '2023-05-23 21:00:00', 318.4, 63.68, 3),
-(4, 28, '2023-06-04 11:19:15', 322.8, 64.56, 4);
+INSERT INTO `home` (`homeID`, `homeName`, `homePhoto`) VALUES
+(1, 'Mustafa\'s Home', 'home1.png');
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `heat`
+-- Tablo için tablo yapısı `register`
 --
 
-CREATE TABLE `heat` (
-  `heatID` int(2) NOT NULL,
-  `heatValue` int(3) DEFAULT NULL,
-  `heatTime` timestamp NULL DEFAULT NULL,
-  `heatRoomID` int(2) DEFAULT NULL
+CREATE TABLE `register` (
+  `regID` int(5) NOT NULL,
+  `regFirstName` varchar(255) NOT NULL,
+  `regLastName` varchar(255) NOT NULL,
+  `regMail` varchar(255) NOT NULL,
+  `regPassword` varchar(255) NOT NULL,
+  `regType` varchar(20) NOT NULL,
+  `regHomeID` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Tablo döküm verisi `heat`
---
-
-INSERT INTO `heat` (`heatID`, `heatValue`, `heatTime`, `heatRoomID`) VALUES
-(1, 24, '2023-06-09 11:41:37', 1),
-(2, 40, '2023-06-09 11:41:37', 2),
-(3, 40, '2023-06-09 11:41:37', 3),
-(4, 28, '2023-06-09 11:41:37', 4);
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `humidity`
---
-
-CREATE TABLE `humidity` (
-  `humID` int(10) NOT NULL,
-  `humValue` int(100) NOT NULL,
-  `humTime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `humKwh` float NOT NULL,
-  `humMoney` float NOT NULL,
-  `humRoomID` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Tablo döküm verisi `humidity`
---
-
-INSERT INTO `humidity` (`humID`, `humValue`, `humTime`, `humKwh`, `humMoney`, `humRoomID`) VALUES
-(1, 42, '2023-06-09 11:41:37', 80.35, 16.07, 1),
-(2, 113, '2023-06-09 11:41:37', 79.6, 15.92, 2),
-(3, 68, '2023-06-09 11:41:37', 79.25, 15.85, 3),
-(4, 225, '2023-06-09 11:41:37', 86.95, 17.39, 4);
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `light`
---
-
-CREATE TABLE `light` (
-  `lightID` int(2) NOT NULL,
-  `lightValue` varchar(10) DEFAULT NULL,
-  `lightTime` timestamp NULL DEFAULT NULL,
-  `lightKwh` float NOT NULL,
-  `lightMoney` float NOT NULL,
-  `lightRoomID` int(2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Tablo döküm verisi `light`
---
-
-INSERT INTO `light` (`lightID`, `lightValue`, `lightTime`, `lightKwh`, `lightMoney`, `lightRoomID`) VALUES
-(1, 'OFF', '2023-06-04 10:55:59', 5.3, 1.06, 1),
-(2, 'OFF', '2023-06-04 10:56:06', 48, 9.6, 2),
-(3, 'ON', '2023-06-04 10:56:19', 161.5, 32.3, 3),
-(4, 'ON', '2023-06-04 10:54:49', 173.8, 34.76, 4);
 
 -- --------------------------------------------------------
 
@@ -127,18 +64,58 @@ INSERT INTO `light` (`lightID`, `lightValue`, `lightTime`, `lightKwh`, `lightMon
 
 CREATE TABLE `room` (
   `roomID` int(2) NOT NULL,
-  `roomName` varchar(255) DEFAULT NULL
+  `roomName` varchar(255) DEFAULT NULL,
+  `roomPhoto` varchar(255) NOT NULL,
+  `homeID` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `room`
 --
 
-INSERT INTO `room` (`roomID`, `roomName`) VALUES
-(1, 'Living'),
-(2, 'Kitchen'),
-(3, 'Children Room'),
-(4, 'Bedroom');
+INSERT INTO `room` (`roomID`, `roomName`, `roomPhoto`, `homeID`) VALUES
+(1, 'Living', '', 1),
+(2, 'Kitchen', '', 1),
+(3, 'Children Room', '', 1),
+(4, 'Bedroom', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `sensor`
+--
+
+CREATE TABLE `sensor` (
+  `sensorID` int(5) NOT NULL,
+  `sensorType` varchar(255) NOT NULL,
+  `sensorValue` int(5) NOT NULL,
+  `sensorTime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `sensorKwh` float NOT NULL,
+  `sensorMoney` float NOT NULL,
+  `sensorRoomID` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `sensor`
+--
+
+INSERT INTO `sensor` (`sensorID`, `sensorType`, `sensorValue`, `sensorTime`, `sensorKwh`, `sensorMoney`, `sensorRoomID`) VALUES
+(1, 'heat', 25, '2023-06-17 15:44:58', 0, 0, 1),
+(2, 'heat', 41, '2023-06-17 15:44:58', 0, 0, 2),
+(3, 'heat', 41, '2023-06-17 15:44:58', 0, 0, 3),
+(4, 'heat', 29, '2023-06-17 15:44:58', 0, 0, 4),
+(5, 'air condition', 25, '2023-06-20 10:15:46', 519.6, 103.92, 1),
+(6, 'air condition', 40, '2023-06-20 10:15:49', 593.8, 118.76, 2),
+(7, 'air condition', 40, '2023-06-20 10:15:54', 591.4, 118.28, 3),
+(8, 'air condition', 28, '2023-06-20 10:15:57', 595.8, 119.16, 4),
+(9, 'light', 0, '2023-06-20 10:16:00', 5.3, 1.06, 1),
+(10, 'light', 0, '2023-06-20 10:16:03', 48, 9.6, 2),
+(11, 'light', 0, '2023-06-20 10:16:07', 298, 59.6, 3),
+(12, 'light', 0, '2023-06-20 10:16:10', 310.3, 62.06, 4),
+(13, 'humidity', 68, '2023-06-20 10:16:14', 148.6, 29.72, 1),
+(14, 'humidity', 50, '2023-06-20 10:16:18', 147.85, 29.57, 2),
+(15, 'humidity', 76, '2023-06-20 10:16:22', 147.5, 29.5, 3),
+(16, 'humidity', 45, '2023-06-20 10:16:27', 155.2, 31.04, 4);
 
 -- --------------------------------------------------------
 
@@ -148,128 +125,74 @@ INSERT INTO `room` (`roomID`, `roomName`) VALUES
 
 CREATE TABLE `users` (
   `userID` int(4) NOT NULL,
-  `userName` varchar(255) NOT NULL,
+  `userFirstName` varchar(255) NOT NULL,
+  `userLastName` varchar(255) NOT NULL,
+  `userMail` varchar(255) NOT NULL,
   `userPassword` varchar(255) NOT NULL,
-  `userType` varchar(10) NOT NULL
+  `userType` varchar(10) NOT NULL,
+  `userHomeID` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `users`
 --
 
-INSERT INTO `users` (`userID`, `userName`, `userPassword`, `userType`) VALUES
-(1, 'admin', '12345', 'Producer'),
-(2, 'admin', '12345', 'Consumer');
-
--- --------------------------------------------------------
-
---
--- Görünüm yapısı durumu `viewconsumer`
--- (Asıl görünüm için aşağıya bakın)
---
-CREATE TABLE `viewconsumer` (
-`roomID` int(2)
-,`roomName` varchar(255)
-,`airID` int(2)
-,`airValue` int(3)
-,`airTime` timestamp
-,`airKwh` float
-,`airMoney` float
-,`airRoomID` int(2)
-,`lightID` int(2)
-,`lightValue` varchar(10)
-,`lightTime` timestamp
-,`lightKwh` float
-,`lightMoney` float
-,`lightRoomID` int(2)
-,`heatID` int(2)
-,`heatValue` int(3)
-,`heatTime` timestamp
-,`heatRoomID` int(2)
-,`humID` int(10)
-,`humValue` int(100)
-,`humTime` timestamp
-,`humKwh` float
-,`humMoney` float
-,`humRoomID` int(100)
-);
-
--- --------------------------------------------------------
-
---
--- Görünüm yapısı durumu `viewkwh`
--- (Asıl görünüm için aşağıya bakın)
---
-CREATE TABLE `viewkwh` (
-`sensor` varchar(8)
-,`lightKwh` float
-,`lightRoomID` int(100)
-);
-
--- --------------------------------------------------------
-
---
--- Görünüm yapısı `viewconsumer`
---
-DROP TABLE IF EXISTS `viewconsumer`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewconsumer`  AS SELECT `r`.`roomID` AS `roomID`, `r`.`roomName` AS `roomName`, `a`.`airID` AS `airID`, `a`.`airValue` AS `airValue`, `a`.`airTime` AS `airTime`, `a`.`airKwh` AS `airKwh`, `a`.`airMoney` AS `airMoney`, `a`.`airRoomID` AS `airRoomID`, `l`.`lightID` AS `lightID`, `l`.`lightValue` AS `lightValue`, `l`.`lightTime` AS `lightTime`, `l`.`lightKwh` AS `lightKwh`, `l`.`lightMoney` AS `lightMoney`, `l`.`lightRoomID` AS `lightRoomID`, `h`.`heatID` AS `heatID`, `h`.`heatValue` AS `heatValue`, `h`.`heatTime` AS `heatTime`, `h`.`heatRoomID` AS `heatRoomID`, `hu`.`humID` AS `humID`, `hu`.`humValue` AS `humValue`, `hu`.`humTime` AS `humTime`, `hu`.`humKwh` AS `humKwh`, `hu`.`humMoney` AS `humMoney`, `hu`.`humRoomID` AS `humRoomID` FROM ((((`room` `r` left join `aircondition` `a` on(`r`.`roomID` = `a`.`airRoomID`)) left join `light` `l` on(`r`.`roomID` = `l`.`lightRoomID`)) left join `heat` `h` on(`r`.`roomID` = `h`.`heatRoomID`)) left join `humidity` `hu` on(`r`.`roomID` = `hu`.`humRoomID`))  ;
-
--- --------------------------------------------------------
-
---
--- Görünüm yapısı `viewkwh`
---
-DROP TABLE IF EXISTS `viewkwh`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewkwh`  AS SELECT 'light' AS `sensor`, `light`.`lightKwh` AS `lightKwh`, `light`.`lightRoomID` AS `lightRoomID` FROM `light` union all select 'air' AS `sensor`,`aircondition`.`airKwh` AS `airKwh`,`aircondition`.`airRoomID` AS `airRoomID` from `aircondition` union all select 'humidity' AS `sensor`,`humidity`.`humKwh` AS `humKwh`,`humidity`.`humRoomID` AS `humRoomID` from `humidity`  ;
+INSERT INTO `users` (`userID`, `userFirstName`, `userLastName`, `userMail`, `userPassword`, `userType`, `userHomeID`) VALUES
+(1, '', '', 'admin', '12345', 'Producer', 1),
+(2, '', '', 'admin', '12345', 'Consumer', 1);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
 --
 
 --
--- Tablo için indeksler `aircondition`
+-- Tablo için indeksler `home`
 --
-ALTER TABLE `aircondition`
-  ADD PRIMARY KEY (`airID`),
-  ADD KEY `airRoomID` (`airRoomID`);
+ALTER TABLE `home`
+  ADD PRIMARY KEY (`homeID`);
 
 --
--- Tablo için indeksler `heat`
+-- Tablo için indeksler `register`
 --
-ALTER TABLE `heat`
-  ADD PRIMARY KEY (`heatID`),
-  ADD KEY `heatRoomID` (`heatRoomID`);
-
---
--- Tablo için indeksler `humidity`
---
-ALTER TABLE `humidity`
-  ADD PRIMARY KEY (`humID`);
-
---
--- Tablo için indeksler `light`
---
-ALTER TABLE `light`
-  ADD PRIMARY KEY (`lightID`),
-  ADD KEY `lightRoomID` (`lightRoomID`);
+ALTER TABLE `register`
+  ADD PRIMARY KEY (`regID`);
 
 --
 -- Tablo için indeksler `room`
 --
 ALTER TABLE `room`
-  ADD PRIMARY KEY (`roomID`);
+  ADD PRIMARY KEY (`roomID`),
+  ADD KEY `homeID` (`homeID`);
+
+--
+-- Tablo için indeksler `sensor`
+--
+ALTER TABLE `sensor`
+  ADD PRIMARY KEY (`sensorID`),
+  ADD KEY `sensorRoomID` (`sensorRoomID`);
 
 --
 -- Tablo için indeksler `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`userID`);
+  ADD PRIMARY KEY (`userID`),
+  ADD KEY `homeID` (`userHomeID`);
 
 --
 -- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
 --
+
+--
+-- Tablo için AUTO_INCREMENT değeri `register`
+--
+ALTER TABLE `register`
+  MODIFY `regID` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `sensor`
+--
+ALTER TABLE `sensor`
+  MODIFY `sensorID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
@@ -282,22 +205,22 @@ ALTER TABLE `users`
 --
 
 --
--- Tablo kısıtlamaları `aircondition`
+-- Tablo kısıtlamaları `room`
 --
-ALTER TABLE `aircondition`
-  ADD CONSTRAINT `aircondition_ibfk_1` FOREIGN KEY (`airRoomID`) REFERENCES `room` (`roomID`);
+ALTER TABLE `room`
+  ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`homeID`) REFERENCES `home` (`homeID`);
 
 --
--- Tablo kısıtlamaları `heat`
+-- Tablo kısıtlamaları `sensor`
 --
-ALTER TABLE `heat`
-  ADD CONSTRAINT `heat_ibfk_1` FOREIGN KEY (`heatRoomID`) REFERENCES `room` (`roomID`);
+ALTER TABLE `sensor`
+  ADD CONSTRAINT `sensor_ibfk_1` FOREIGN KEY (`sensorRoomID`) REFERENCES `room` (`roomID`);
 
 --
--- Tablo kısıtlamaları `light`
+-- Tablo kısıtlamaları `users`
 --
-ALTER TABLE `light`
-  ADD CONSTRAINT `light_ibfk_1` FOREIGN KEY (`lightRoomID`) REFERENCES `room` (`roomID`);
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`userHomeID`) REFERENCES `home` (`homeID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
