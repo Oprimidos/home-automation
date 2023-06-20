@@ -15,9 +15,10 @@
         }, 10000);
     </script>
     <?php include("config/connectdb.php") ?>
-    <?php include("config/update.php");?>
+    <?php // include("config/update.php");
+    ?>
     <?php
-    if (strlen($_SESSION["userName"]) == 0) {
+    if (strlen($_SESSION["userMail"]) == 0) {
         session_destroy();
         header("Location:loginP.php?islem=no");
     } ?>
@@ -26,18 +27,34 @@
 
 <body>
 
-    <header id="nav-wrapper">
-        <nav id="nav">
-            <div class="nav left">
-                <span class="gradient skew"><a href="assets/images/M^2-1.png"></a><img src="assets/images/M^2-1.png" alt="#"/></span>
-                <button id="menu" class="btn-nav"><span class="fas fa-bars"></span></button>
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+            <img src="assets/images/M^2-1.png" alt="Logo" width="30" height="24">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Statics</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu bg-secondary">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            <div class="nav right">
-                <a href="homeP.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Home</span></span></a>
-                <a href="config/logout.php" class="nav-link"><span class="nav-link-span"><span class="u-nav">Logout</span></span></a>
-            </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
 </body>
 
