@@ -30,7 +30,7 @@
         $rooms = $sqlrooms->fetchAll(PDO::FETCH_ASSOC);
         foreach ($rooms as $room) { ?>
             <div class="box">
-                <a href="living.php">
+                <a href="room.php?roomID=<?php echo$room["roomID"]?>">
                     <img src="<?php echo $room["roomPhoto"] ?>" alt="Living Room">
                     <h1><?php echo $room["roomName"] ?></h1>
                 </a>
