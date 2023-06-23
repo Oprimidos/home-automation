@@ -112,9 +112,7 @@
                         </tbody>
                     </table>
                 
-                <div class="col-4">
-                    <div id="chartContainer" style="height: 250px; width: 100%;"></div>
-                </div>
+                
             </div>
         </div>
     </div>
