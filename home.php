@@ -19,6 +19,13 @@
             background-image: url('<?php echo $home["homePhoto"] ?>');
         }
     </style>
+    <?php 
+    if(!($_SESSION["userHomeID"]==$home["homeID"])){
+        session_destroy();
+        header("Location:login.php?islem=no");
+    }
+    
+    ?>
 </head>
 
 <body>
