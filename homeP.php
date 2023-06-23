@@ -2,47 +2,42 @@
 <html>
 
 <head>
-    <title>Consumer Dashboard</title>
+    <title>Producer Dashboard</title>
+    <link rel="shortcut icon" href="assets/images/favicon-home.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/home.css">
     <header>
         <?php include("navbarP.php"); ?>
     </header>
+    <?php
+    $sqlhome = $db->prepare('SELECT * from home WHERE homeID=:homeID');
+    $sqlhome->bindParam(':homeID', $_SESSION["userHomeID"]);
+    $sqlhome->execute();
+    $home = $sqlhome->fetch(PDO::FETCH_ASSOC);
+    ?>
    <style>
-    body{background-image: url('./assets/images/house.jpg');}
+    body{background-image: url('<?php echo $home["homePhoto"] ?>');}
     </style>
 </head>
 
 <body>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<div>
+        <h1 class="text-center">WELCOME <?php echo $_SESSION["userFirstName"] . " " . $_SESSION["userLastName"] ?></h1>
+    </div>
+
     <div class="container">
-        <div class="box">
-            <a href="livingP.php">
-            <img src="./assets/images/living.jpg" alt="Living Room">
-            <h1>Living</h1>
-    </a>
-        </div>
-        <div class="box">
-        <a href="kitchenP.php">
-            <img src="./assets/images/kitchen.jpg" alt="Kitchen">
-            <h1>Kitchen</h1>
-            </a>
-        </div>
-        <div class="box">
-        <a href="childrenP.php">
-            <img src="./assets/images/children.jpg" alt="Children Room">
-            <h1>Children Room</h1>
-            </a>
-        </div>
-        <div class="box">
-        <a href="bedroomP.php">
-            <img src="./assets/images/bedroom.jpg" alt="Bedroom">
-            <h1>Bedroom</h1>
-</a>
-        </div>
+        <?php
+        $sqlrooms = $db->prepare('SELECT * from room WHERE homeID=:homeID');
+        $sqlrooms->bindParam(':homeID', $_SESSION["userHomeID"]);
+        $sqlrooms->execute();
+        $rooms = $sqlrooms->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($rooms as $room) { ?>
+            <div class="box">
+                <a href="roomP.php?roomID=<?php echo $room["roomID"] ?>">
+                    <img src="<?php echo $room["roomPhoto"] ?>" alt="Living Room">
+                    <h1><?php echo $room["roomName"] ?></h1>
+                </a>
+            </div>
+        <?php } ?>
     </div>
 </body>
 
