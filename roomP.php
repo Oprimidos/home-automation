@@ -22,7 +22,7 @@
     <?php 
     if(!($_SESSION["userHomeID"]==$room["homeID"])){
         session_destroy();
-        header("Location:login.php?islem=no");
+        header("Location:loginP.php?islem=no");
     }
     
     ?>

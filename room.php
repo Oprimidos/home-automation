@@ -65,14 +65,7 @@
     <?php
     ?>
     <div class="container" ">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      
-        
-
+       
         <div class=" card text-bg-dark">
 
         <div class="card-img-overlay">
