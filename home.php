@@ -4,6 +4,7 @@
 <head>
     <title>Consumer Dashboard</title>
     <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="shortcut icon" href="assets/images/favicon-home.png" type="image/x-icon">
     <header>
         <?php include("navbar.php"); ?>
     </header>

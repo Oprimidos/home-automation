@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-
+    <title>Home Automation Index</title>
+    <link rel="shortcut icon" href="assets/images/favicon-home.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/index.css">
 

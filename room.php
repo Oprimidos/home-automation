@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <title>Consumer Dashboard</title>
     <link rel="stylesheet" href="assets/css/rooms.css">
+    <link rel="shortcut icon" href="assets/images/favicon-home.png" type="image/x-icon">
     <header>
         <?php include("navbar.php"); ?>
     </header>
@@ -13,6 +13,7 @@
     $sqlroom->execute();
     $room = $sqlroom->fetch(PDO::FETCH_ASSOC);
     ?>
+    <title><?php echo$room["roomName"]?> Dashboard</title>
     <style>
         body {
             background-image: url('<?php echo $room["roomPhoto"] ?>');

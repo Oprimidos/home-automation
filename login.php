@@ -4,7 +4,7 @@ session_start(); ?>
 <html>
 
 <head>
-    
+    <link rel="shortcut icon" href="assets/images/favicon-home.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consumer Login</title>
     <link rel="stylesheet" href="assets/css/login.css">
