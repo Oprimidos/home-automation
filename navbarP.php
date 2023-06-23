@@ -37,18 +37,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" aria-current="page" href="homeP.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Statics</a>
+                        <a class="nav-link" href="#">Statistics</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
+                            ROOMS
                         </a>
                         <ul class="dropdown-menu bg-secondary">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <?php
+                            $sqlrooms = $db->prepare('SELECT * from room WHERE homeID=:homeID');
+                            $sqlrooms->bindParam(':homeID', $_SESSION["userHomeID"]);
+                            $sqlrooms->execute();
+                            $rooms = $sqlrooms->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($rooms as $room) { ?>
+                                <li><a class="dropdown-item" href="roomP.php?roomID=<?php echo $room["roomID"]?>"><?php echo$room["roomName"]?></a></li>
+                            <?php } ?>
                         </ul>
                     </li>
                 </ul>
