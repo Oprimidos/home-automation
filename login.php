@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION)) {
     session_destroy();
 }
- ?>
+?>
 <!DOCTYPE html>
 <html>
 
@@ -17,6 +17,13 @@ if (isset($_SESSION)) {
             margin: 20px;
         }
     </style>
+    <?php
+    $islem = $_GET["islem"];
+
+    if ($islem === "no") {
+        echo '<script>alert("Error: Invalid operation.");</script>';
+    }
+    ?>
 
 </head>
 
@@ -39,7 +46,6 @@ if (isset($_SESSION)) {
                     <input type="password" id="password" name="userPassword" value="12345" required>
                 </div>
                 <br>
-                
                 <button type="submit" name="login" value="login">Login</button>
                 <button type="submit" name="register" value="register">Register</button>
         </div>

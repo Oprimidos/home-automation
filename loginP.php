@@ -17,6 +17,13 @@ if (isset($_SESSION)) {
             margin: 20px;
         }
     </style>
+    <?php
+    $islem = $_GET["islem"];
+
+    if ($islem === "no") {
+        echo '<script>alert("Error: Invalid operation.");</script>';
+    }
+    ?>
 
 </head>
 
