@@ -22,6 +22,9 @@
 </head>
 
 <body>
+    <div>
+        <h1 class="text-center">WELCOME <?php echo $_SESSION["userFirstName"] . " " . $_SESSION["userLastName"] ?></h1>
+    </div>
 
     <div class="container">
         <?php
@@ -31,7 +34,7 @@
         $rooms = $sqlrooms->fetchAll(PDO::FETCH_ASSOC);
         foreach ($rooms as $room) { ?>
             <div class="box">
-                <a href="room.php?roomID=<?php echo$room["roomID"]?>">
+                <a href="room.php?roomID=<?php echo $room["roomID"] ?>">
                     <img src="<?php echo $room["roomPhoto"] ?>" alt="Living Room">
                     <h1><?php echo $room["roomName"] ?></h1>
                 </a>
@@ -63,17 +66,17 @@
                             <p>Room Photo</p>
                             <ul>
                                 <?php
-                            $sqlphotos = $db->prepare('SELECT * from photos');
-                            $sqlphotos->execute();
-                            $photos = $sqlphotos->fetchAll(PDO::FETCH_ASSOC);
-                            foreach ($photos as $photo) {
-                            ?>
-                                <li>
-                                    <input type="radio" id="picture1" name="picture" value="<?php echo$photo["photoUrl"]?>">
-                                    <label for="picture1">
-                                        <img src="<?php echo$photo["photoUrl"]?>" alt="Picture 1" style="height: 100px;"></label>
-                                </li>
-                                <?php }?>
+                                $sqlphotos = $db->prepare('SELECT * from photos');
+                                $sqlphotos->execute();
+                                $photos = $sqlphotos->fetchAll(PDO::FETCH_ASSOC);
+                                foreach ($photos as $photo) {
+                                ?>
+                                    <li>
+                                        <input type="radio" id="picture1" name="picture" value="<?php echo $photo["photoUrl"] ?>">
+                                        <label for="picture1">
+                                            <img src="<?php echo $photo["photoUrl"] ?>" alt="Picture 1" style="height: 100px;"></label>
+                                    </li>
+                                <?php } ?>
                             </ul>
                         </label>
                     </form>

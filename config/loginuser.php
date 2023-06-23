@@ -19,6 +19,8 @@ if (isset($_POST["loginP"])) {
     if ($say == 1) {
         $_SESSION["userMail"] = $usergetir["userMail"];
         $_SESSION["userHomeID"] = $usergetir["userHomeID"];
+        $_SESSION["userFirstName"]=$usergetir["userFirstName"];
+        $_SESSION["userLastName"]=$usergetir["userLastName"];
         header("Location:../homeP.php");
     } else {
         header("Location:../loginP.php?islem=no");
@@ -42,6 +44,8 @@ if (isset($_POST["login"])) {
     if ($say == 1) {
         $_SESSION["userMail"] = $usergetir["userMail"];
         $_SESSION["userHomeID"] = $usergetir["userHomeID"];
+        $_SESSION["userFirstName"]=$usergetir["userFirstName"];
+        $_SESSION["userLastName"]=$usergetir["userLastName"];
         header("Location:../home.php");
     } else {
         header("Location:../login.php?islem=no");
