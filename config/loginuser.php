@@ -21,6 +21,7 @@ if (isset($_POST["loginP"])) {
         $_SESSION["userHomeID"] = $usergetir["userHomeID"];
         $_SESSION["userFirstName"]=$usergetir["userFirstName"];
         $_SESSION["userLastName"]=$usergetir["userLastName"];
+        $_SESSION["userHomeID"]=$usergetir["userHomeID"];
         header("Location:../homeP.php");
     } else {
         header("Location:../loginP.php?islem=no");
@@ -46,6 +47,7 @@ if (isset($_POST["login"])) {
         $_SESSION["userHomeID"] = $usergetir["userHomeID"];
         $_SESSION["userFirstName"]=$usergetir["userFirstName"];
         $_SESSION["userLastName"]=$usergetir["userLastName"];
+        $_SESSION["userHomeID"]=$usergetir["userHomeID"];
         header("Location:../home.php");
     } else {
         header("Location:../login.php?islem=no");

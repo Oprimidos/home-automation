@@ -19,6 +19,13 @@
             background-image: url('<?php echo $room["roomPhoto"] ?>');
         }
     </style>
+    <?php 
+    if(!($_SESSION["userHomeID"]==$room["homeID"])){
+        session_destroy();
+        header("Location:login.php?islem=no");
+    }
+    
+    ?>
     <?php
     /*$dataPoints = array();
     $handle = $db->prepare('SELECT sensor,lightKwh from viewKwh WHERE lightRoomID=2');
