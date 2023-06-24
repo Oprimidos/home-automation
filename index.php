@@ -22,9 +22,8 @@
                 <a class="btn btn-primary btn-xl text-uppercase" href="login.php">CONSUMER</a>
                 <a class="btn btn-primary btn-xl text-uppercase" href="loginP.php">PRODUCER</a>
             </div>
-        </header>
-        <!-- Services-->
-        <section class="page-section" id="services">
+
+            <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Benefits</h2>
@@ -58,6 +57,9 @@
                 </div>
             </div>
         </section>
+        </header>
+     
+       
        
       
         <!-- Bootstrap core JS-->
