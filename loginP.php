@@ -18,11 +18,12 @@ if (isset($_SESSION)) {
         }
     </style>
     <?php
+    if(isset($_GET["islem"])){
     $islem = $_GET["islem"];
-
     if ($islem === "no") {
         echo '<script>alert("Error: Invalid operation.");</script>';
     }
+}
     ?>
 
 </head>
