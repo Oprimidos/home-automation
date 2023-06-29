@@ -10,7 +10,7 @@ if (isset($_SESSION)) {
 <head>
     <link rel="shortcut icon" href="assets/images/favicon-home.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Cunsomer</title>
+    <title>Register Producer</title>
     <link rel="stylesheet" href="assets/css/login.css">
     <style>
         body {
@@ -35,6 +35,8 @@ if (isset($_SESSION)) {
         <div class="login-form">
             <form class="login" method="POST" action="config/userregister.php" enctype="multipart/form-data">
                 <h1>REGISTER CONSUMER</h1>
+                <p>You need to take Home ID from Producer</p>
+                <br>
                 <div class="form-group">
                     <label for="userFirstName">First Name:&nbsp;</label>
                     <input type="text" id="userFirstName" name="userFirstName" required>
@@ -46,13 +48,9 @@ if (isset($_SESSION)) {
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="homeName">Home Name&nbsp;</label>
-                    <input type="text" name="homeName" id="homeName" required>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="homePhoto">Home Photo&nbsp;</label>
-                    <input type="file" name="homePhoto" id="homePhoto" required>
+                    <label for="homeID">Home ID:&nbsp;</label>
+                    
+                    <input type="number" id="homeID" name="homeID" required min="1">
                 </div>
                 <br>
                 <div class="form-group">

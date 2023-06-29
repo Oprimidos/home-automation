@@ -10,7 +10,7 @@ if (isset($_SESSION)) {
 <head>
     <link rel="shortcut icon" href="assets/images/favicon-home.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Producer</title>
+    <title>Register Cunsomer</title>
     <link rel="stylesheet" href="assets/css/login.css">
     <style>
         body {
@@ -46,8 +46,13 @@ if (isset($_SESSION)) {
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="homeID">HomeID:&nbsp;</label>
-                    <input type="number" id="homeID" name="homeID" required min="1">
+                    <label for="homeName">Home Name&nbsp;</label>
+                    <input type="text" name="homeName" id="homeName" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="homePhoto">Home Photo&nbsp;</label>
+                    <input type="file" name="homePhoto" id="homePhoto" required>
                 </div>
                 <br>
                 <div class="form-group">

@@ -1,10 +1,10 @@
 <?php
 include("connectdb.php");
-if (isset($_POST["registerC"])) {
+if (isset($_POST["registerP"])) {
     if (isset($_FILES["homePhoto"])) {
         echo "here\n";
         $upload = "../assets/images/";
-        $type = "Consumer";
+        $type = "Prodcuer";
 
         //Save file into file and database
         $stmt = $db->query("SELECT MAX(homeID) AS max_id FROM home");
@@ -35,8 +35,8 @@ if (isset($_POST["registerC"])) {
 else {
     header("Location:../register.php?islem=no");
 }
-if (isset($_POST["registerP"])) {
-    $type = "Producer";
+if (isset($_POST["registerC"])) {
+    $type = "Consumer";
     $stmt = $db->query("SELECT MAX(homeID) AS max_id FROM home");
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $maxId = $row['max_id'] + 1;
