@@ -30,10 +30,10 @@ if (isset($_POST["registerP"])) {
         $insertregister->bindParam(':regHomeID', $maxId);
         $insertregister->execute();
     }
-    header("Location:../register.php?islem=ok");
+    header("Location:../registerP.php?islem=ok");
 }
 else {
-    header("Location:../register.php?islem=no");
+    header("Location:../registerP.php?islem=no");
 }
 if (isset($_POST["registerC"])) {
     $type = "Consumer";
@@ -50,8 +50,8 @@ if (isset($_POST["registerC"])) {
     $insertregister->bindParam(':regType', $type);
     $insertregister->bindParam(':regHomeID', $_POST["homeID"]);
     $insertregister->execute();
-    header("Location:../registerP.php?islem=ok");
+    header("Location:../register.php?islem=ok");
 }
 else{
-    header("Location:../registerP.php?islem=no");
+    header("Location:../register.php?islem=no");
 }
