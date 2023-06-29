@@ -54,11 +54,12 @@
                             $sqlrooms->execute();
                             $rooms = $sqlrooms->fetchAll(PDO::FETCH_ASSOC);
                             foreach ($rooms as $room) { ?>
-                                <li><a class="dropdown-item" href="room.php?roomID=<?php echo $room["roomID"]?>"><?php echo$room["roomName"]?></a></li>
+                                <li><a class="dropdown-item" href="room.php?roomID=<?php echo $room["roomID"] ?>"><?php echo $room["roomName"] ?></a></li>
                             <?php } ?>
 
                         </ul>
                     </li>
+                    <li class="nav-item"><a class="nav-link" href="config/logout.php">LOGOUT</a></li>
                 </ul>
             </div>
         </div>

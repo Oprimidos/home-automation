@@ -39,9 +39,6 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="homeP.php">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Statistics</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             ROOMS
@@ -57,6 +54,13 @@
                             <?php } ?>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php">ADMIN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">LOGOUT</a>
+                    </li>
+
                 </ul>
             </div>
         </div>
