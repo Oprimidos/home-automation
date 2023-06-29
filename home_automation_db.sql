@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 20 Haz 2023, 15:44:54
+-- Üretim Zamanı: 29 Haz 2023, 22:36:29
 -- Sunucu sürümü: 10.4.25-MariaDB
 -- PHP Sürümü: 8.1.10
 
@@ -38,7 +38,8 @@ CREATE TABLE `home` (
 --
 
 INSERT INTO `home` (`homeID`, `homeName`, `homePhoto`) VALUES
-(1, 'Mustafa\'s Home', './assets/images/house.jpg');
+(1, 'Mustafa\'s Home', './assets/images/house.jpg'),
+(2, 'Mazlum\'s Home', './assets/images/house.jpg');
 
 -- --------------------------------------------------------
 
@@ -76,8 +77,25 @@ CREATE TABLE `register` (
   `regMail` varchar(255) NOT NULL,
   `regPassword` varchar(255) NOT NULL,
   `regType` varchar(20) NOT NULL,
+  `regHomeName` varchar(255) NOT NULL,
+  `regHomePhoto` varchar(255) NOT NULL,
   `regHomeID` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `register`
+--
+
+INSERT INTO `register` (`regID`, `regFirstName`, `regLastName`, `regMail`, `regPassword`, `regType`, `regHomeName`, `regHomePhoto`, `regHomeID`) VALUES
+(1, 'a', 'a', 'a', 'aaa', 'Consumer', '../assets/images//3.jpg', 'a', 3),
+(2, 'a', 'a', 'a', 'aaa', 'Consumer', '../assets/images/3.jpg', 'a', 3),
+(3, '1', '1', '1', 'fcsdaffsf', 'Producer', '', '', 3),
+(4, '1', '1', '1', 'ssss', 'Producer', '', '', 11),
+(5, 'aa', 'a2', 'a@gamil.com', 'aa', 'Producer', '', '', 2),
+(6, 'aa', 'a2', 'a@gamil.com', 'aa', 'Producer', '', '', 2),
+(7, '<', '<', 'a@gamil.com', 'aaa', 'Producer', '', '', 11),
+(8, 's', 's', 'a@gamil.com', 'sasa', 'Producer', '', '', 12),
+(9, 's', 's', 'a@gamil.com', 'www', 'Producer', '', '', 12);
 
 -- --------------------------------------------------------
 
@@ -101,7 +119,8 @@ INSERT INTO `room` (`roomID`, `roomName`, `roomPhoto`, `homeID`) VALUES
 (1, 'Living', './assets/images/living.jpg', 1),
 (2, 'Kitchen', './assets/images/kitchen.jpg', 1),
 (3, 'Children Room', './assets/images/children.jpg', 1),
-(4, 'Bedroom', './assets/images/bedroom.jpg', 1);
+(4, 'Bedroom', './assets/images/bedroom.jpg', 1),
+(5, 'Living Room', './assets/images/living.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -124,22 +143,24 @@ CREATE TABLE `sensor` (
 --
 
 INSERT INTO `sensor` (`sensorID`, `sensorType`, `sensorValue`, `sensorTime`, `sensorKwh`, `sensorMoney`, `sensorRoomID`) VALUES
-(1, 'heat', 25, '2023-06-17 15:44:58', 0, 0, 1),
-(2, 'heat', 41, '2023-06-17 15:44:58', 0, 0, 2),
-(3, 'heat', 41, '2023-06-17 15:44:58', 0, 0, 3),
-(4, 'heat', 29, '2023-06-17 15:44:58', 0, 0, 4),
-(5, 'air condition', 25, '2023-06-20 10:15:46', 519.6, 103.92, 1),
-(6, 'air condition', 40, '2023-06-20 10:15:49', 593.8, 118.76, 2),
-(7, 'air condition', 40, '2023-06-20 10:15:54', 591.4, 118.28, 3),
-(8, 'air condition', 28, '2023-06-20 10:15:57', 595.8, 119.16, 4),
-(9, 'light', 0, '2023-06-20 10:16:00', 5.3, 1.06, 1),
-(10, 'light', 0, '2023-06-20 10:16:03', 48, 9.6, 2),
-(11, 'light', 0, '2023-06-20 10:16:07', 298, 59.6, 3),
-(12, 'light', 0, '2023-06-20 10:16:10', 310.3, 62.06, 4),
-(13, 'humidity', 68, '2023-06-20 10:16:14', 148.6, 29.72, 1),
-(14, 'humidity', 50, '2023-06-20 10:16:18', 147.85, 29.57, 2),
-(15, 'humidity', 76, '2023-06-20 10:16:22', 147.5, 29.5, 3),
-(16, 'humidity', 45, '2023-06-20 10:16:27', 155.2, 31.04, 4);
+(1, 'Temperature', 25, '2023-06-23 11:41:55', 0, 0, 1),
+(2, 'Temperature', 41, '2023-06-23 11:41:59', 0, 0, 2),
+(3, 'Temperature', 41, '2023-06-23 11:42:03', 0, 0, 3),
+(4, 'Temperature', 29, '2023-06-23 11:42:06', 0, 0, 4),
+(5, 'Air Condition', 25, '2023-06-23 11:42:39', 519.6, 103.92, 1),
+(6, 'Air Condition', 40, '2023-06-23 11:42:43', 593.8, 118.76, 2),
+(7, 'Air Condition', 40, '2023-06-23 11:42:47', 591.4, 118.28, 3),
+(8, 'Air Condition', 28, '2023-06-23 11:42:50', 595.8, 119.16, 4),
+(9, 'Light', 0, '2023-06-23 11:42:55', 5.3, 1.06, 1),
+(10, 'Light', 0, '2023-06-23 11:43:01', 48, 9.6, 2),
+(11, 'Light', 0, '2023-06-23 11:43:04', 298, 59.6, 3),
+(12, 'Light', 0, '2023-06-23 11:43:08', 310.3, 62.06, 4),
+(13, 'Humidity', 68, '2023-06-23 11:43:12', 148.6, 29.72, 1),
+(14, 'Humidity', 50, '2023-06-23 11:43:26', 147.85, 29.57, 2),
+(15, 'Humidity', 76, '2023-06-23 11:43:30', 147.5, 29.5, 3),
+(16, 'Humidity', 45, '2023-06-23 11:43:34', 155.2, 31.04, 4),
+(29, 'Temperature', 25, '2023-06-23 11:44:08', 0, 0, 0),
+(30, 'Air Condition', 25, '2023-06-23 11:43:49', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -222,13 +243,13 @@ ALTER TABLE `photos`
 -- Tablo için AUTO_INCREMENT değeri `register`
 --
 ALTER TABLE `register`
-  MODIFY `regID` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `regID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `sensor`
 --
 ALTER TABLE `sensor`
-  MODIFY `sensorID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `sensorID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
