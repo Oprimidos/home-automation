@@ -48,7 +48,7 @@ if (isset($_SESSION)) {
                 </div>
                 <br>
                 <button type="submit" name="login" value="login">Login</button>
-                <button type="submit" name="register" value="register">Register</button>
+                <button type="button" name="register" value="register" onclick="location.href='register.php'">Register</button>
         </div>
         </form>
     </div>
