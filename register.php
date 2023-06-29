@@ -23,6 +23,9 @@ if (isset($_SESSION)) {
         if ($islem === "no") {
             echo '<script>alert("Error: Invalid operation.");</script>';
         }
+        else{
+            echo '<script>alert("Register Succesfully Complete");</script>';
+        }
     }
     ?>
 </head>
