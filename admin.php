@@ -30,7 +30,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homeP.php">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <img src="assets/icons/go-back.png" alt="">
                 </div>
                 <div class="sidebar-brand-text mx-3"><img src="assets/images/M^2-1.png" alt=""></div>
             </a>
@@ -151,7 +151,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalkwh?> Kwh</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <img src="assets/icons/conflict.png" alt="Light">
                                         </div>
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">$ <?php echo $totalmoney?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <img src="assets/icons/dolar.png" alt="Money">
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $room["total"]?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <img src="assets/icons/room.png" alt="Room">
                                         </div>
                                     </div>
                                 </div>
@@ -234,7 +234,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $sensor["total"]?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <img src="assets/icons/sensor.png" alt="Sensor">
                                         </div>
                                     </div>
                                 </div>
