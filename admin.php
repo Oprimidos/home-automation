@@ -41,7 +41,6 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="admin.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
@@ -55,9 +54,9 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="addRoom.php" data-toggle="collapse" data-target="#collapseTwo"
+                <a class="nav-link collapsed" href="addRoom.php" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <img src="assets/icons/add.png" alt="Add">
                     <span>Add Room</span>
                 </a>
              
@@ -65,9 +64,9 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="editRoom.php" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="editRoom.php" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
+                    <img src="assets/icons/edit.png" alt="Edit">
                     <span>Edit Room</span>
                 </a>
                
@@ -85,25 +84,20 @@
             
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.php">
-                    <i class="fas fa-fw fa-table"></i>
+                    <img src="assets/icons/consumer.png" alt="Consumer">
                     <span>Last Activities</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            <div class="text-center">
+                <button class="rounded-circle border-0" ><img src="assets/icons/logout.png" alt="Logout"></button>
             </div>
 
           
@@ -254,10 +248,7 @@
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
                                     <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
+                                        
                                         
                                     </div>
                                 </div>
@@ -298,15 +289,7 @@
                                         <canvas id="myPieChart"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
+                                        
                                     </div>
                                 </div>
                             </div>
