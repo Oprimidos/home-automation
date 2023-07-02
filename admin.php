@@ -6,10 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Procuder Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,7 +16,7 @@
 
     <!-- Custom styles for this template-->
     <link href="assets/css/admin.css" rel="stylesheet">
-
+    <?php include("config/connectdb.php")?>
 </head>
 
 <body id="page-top">
@@ -35,7 +32,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3"><img src="assets/images/M^2-1.png" alt=""></div>
             </a>
 
             <!-- Divider -->
@@ -143,8 +140,15 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Spends (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Spends (Kwh)</div>
+                                                <?php 
+                                                $sqlkwh = $db->prepare('SELECT SUM(sensorKwh) AS total
+                                                FROM sensor');
+                                                $sqlkwh->execute();
+                                                $kwh = $sqlkwh->fetch(PDO::FETCH_ASSOC);  
+                                                $totalkwh=(int)$kwh["total"];
+                                                ?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalkwh?> Kwh</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -161,8 +165,15 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Spends (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Spends (Money)</div>
+                                                <?php 
+                                                $sqlmoney = $db->prepare('SELECT SUM(sensorMoney) AS total
+                                                FROM sensor');
+                                                $sqlmoney->execute();
+                                                $money = $sqlmoney->fetch(PDO::FETCH_ASSOC);  
+                                                $totalmoney=(int)$money["total"];
+                                                ?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$ <?php echo $totalmoney?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -182,7 +193,15 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Total Rooms</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                <?php 
+                                                $sqlroom = $db->prepare('SELECT Count(*) AS total
+                                                FROM room WHERE homeID=:homeID');
+                                                $sqlroom->bindParam(':homeID',$_SESSION["userHomeID"]);
+                                                $sqlroom->execute();
+                                                $room = $sqlroom->fetch(PDO::FETCH_ASSOC);  
+                                                
+                                                ?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $room["total"]?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -201,7 +220,18 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Total Devices</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                <?php 
+                                                $sqlsensor = $db->prepare('SELECT COUNT(sensor.sensorID) AS total
+                                                FROM home 
+                                                JOIN room ON home.homeID = room.homeID 
+                                                JOIN sensor ON room.roomID = sensor.sensorRoomID 
+                                                WHERE home.homeID =:homeID;
+                                                ');
+                                                $sqlsensor->bindParam(':homeID',$_SESSION["userHomeID"]);
+                                                $sqlsensor->execute();
+                                                $sensor= $sqlsensor->fetch(PDO::FETCH_ASSOC);  
+                                                ?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $sensor["total"]?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
