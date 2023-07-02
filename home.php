@@ -48,11 +48,6 @@
             </div>
         <?php } ?>
     </div>
-    <div class="position-fixed bottom-0 end-0 rounded-circle">
-        <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <img src="./assets/images/add.png" alt="..." class="">
-        </button>
-    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -88,10 +83,7 @@
                         </label>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">ADD</button>
-                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
-                </div>
+                
             </div>
         </div>
     </div>
