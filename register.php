@@ -15,7 +15,7 @@ if (isset($_SESSION)) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Consumer - Register</title>
+    <title>SB Admin 2 - Register</title>
 
     <!-- Custom fonts for this template-->
     <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
@@ -85,9 +85,9 @@ if (isset($_SESSION)) {
                                     </div>
 
                                 </div>
-                                <a href="login.php" class="btn btn-primary btn-user btn-block">
+                                <button type="submit" name="register" class="btn btn-primary btn-user btn-block">
                                     Register Account
-                                </a>
+                                </button>
                              
                             </form>
                             <hr>
