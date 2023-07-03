@@ -5,18 +5,26 @@ if (isset($_SESSION)) {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <link rel="shortcut icon" href="assets/images/favicon-home.png" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Producer</title>
-    <link rel="stylesheet" href="assets/css/login.css">
-    <style>
-        body {
-            margin: 20px;
-        }
-    </style>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Consumer - Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="assets/css/admin2.css" rel="stylesheet">
     <?php
     if (isset($_GET["islem"])) {
         $islem = $_GET["islem"];
@@ -30,44 +38,81 @@ if (isset($_SESSION)) {
     ?>
 </head>
 
-<body>
+<body class="bg-gradient-primary">
+
     <div class="container">
-        <div class="login-form">
-            <form class="login" method="POST" action="config/userregister.php" enctype="multipart/form-data">
-                <h1>REGISTER CONSUMER</h1>
-                <p>You need to take Home ID from Producer</p>
-                <br>
-                <div class="form-group">
-                    <label for="userFirstName">First Name:&nbsp;</label>
-                    <input type="text" id="userFirstName" name="userFirstName" required>
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <form class="user" method="POST" action="config/userregister.php" enctype="multipart/form-data">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="userFirstName" name="userFirstName" required
+                                            placeholder="First Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="userLastName" name="userLastName" required
+                                            placeholder="Last Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" name="homeName" id="homeName" required
+                                            placeholder="Home Name">
+                                    </div>
+                                    
+                                    <div class="col-sm-6">
+                                
+                                        <input type="file" class="btn btn-primary btn-user btn-block" name="homePhoto" id="homePhoto" required
+                                            placeholder="Home Photo">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="userMail" name="userMail" required
+                                        placeholder="Email Address">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                        id="password" name="userPassword" required
+                                        placeholder="Password">
+                                    </div>
+
+                                </div>
+                                <a href="login.php" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </a>
+                             
+                            </form>
+                            <hr>
+
+                            <div class="text-center">
+                                <a class="small" href="login.php">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <br>
-                <div class="form-group">
-                    <label for="userLastName">Last Name:&nbsp;</label>
-                    <input type="text" id="userLastName" name="userLastName" required>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="homeID">Home ID:&nbsp;</label>
-                    
-                    <input type="number" id="homeID" name="homeID" required min="1">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="userMail">Email Address:</label>
-                    <input type="email" id="userMail" name="userMail" required>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="password">New Password:&nbsp;</label>
-                    <input type="password" id="password" name="userPassword" required>
-                </div>
-                <br>
-                <button type="submit" name="registerC" value="register">Register</button>
+            </div>
         </div>
-        </form>
+
     </div>
-    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
 </body>
 
 </html>
