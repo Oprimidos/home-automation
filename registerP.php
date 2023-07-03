@@ -85,15 +85,15 @@ if (isset($_SESSION)) {
                                     </div>
 
                                 </div>
-                                <a href="loginP.php" class="btn btn-primary btn-user btn-block">
+                                <button type="submit" name="registerP" class="btn btn-primary btn-user btn-block">
                                     Register Account
-                                </a>
+                                </button>
                              
                             </form>
                             <hr>
 
                             <div class="text-center">
-                                <a class="small" href="login.php">Already have an account? Login!</a>
+                                <a class="small" href="loginP.php">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
