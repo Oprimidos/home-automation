@@ -1,4 +1,4 @@
-<?php include("../config/connectdb.php") ?>
+
 
 <!--Bar Chart For Money-->
 <?php

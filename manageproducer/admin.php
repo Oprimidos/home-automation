@@ -14,7 +14,7 @@
 
     <!-- Custom styles for this template-->
     <link href="../assets/css/admin.css" rel="stylesheet">
-    <?php include("../config/connectdb.php"); include("../config/chart.php");?>
+    <?php include("../config/connectdb.php"); include("config/chart.php");?>
 
 </head>
 
