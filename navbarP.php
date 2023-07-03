@@ -55,7 +55,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin.php">ADMIN</a>
+                        <a class="nav-link" href="manageproducer/admin.php">ADMIN</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="config/logout.php">LOGOUT</a>
