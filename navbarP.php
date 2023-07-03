@@ -58,7 +58,7 @@
                         <a class="nav-link" href="admin.php">ADMIN</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">LOGOUT</a>
+                        <a class="nav-link" href="config/logout.php">LOGOUT</a>
                     </li>
 
                 </ul>
