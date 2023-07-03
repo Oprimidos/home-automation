@@ -73,9 +73,9 @@
                                             </div>
                                             <div class="col-sm-12 mb-3 mb-sm-10">
                                                 <label for=""> Room Photo</label>
-                                                <input type="file" id="roomPhoto" name="roomPhoto" required placeholder="Room Name">
+                                                <input type="file" id="roomPhoto" name="roomPhoto" accept="image/*" required>
                                             </div>
-                                            <input type="hidden" name="homeID" value="$_SESSION['userHomeID']">
+                                           
                                             <button type="submit" name="addroom" class="btn btn-primary btn-user btn-block">
                                                 Add A Room
                                             </button>

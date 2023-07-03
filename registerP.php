@@ -69,7 +69,7 @@ if (isset($_SESSION)) {
                                     
                                     <div class="col-sm-6">
                                 
-                                        <input type="file" class="btn btn-primary btn-user btn-block" name="homePhoto" id="homePhoto" required
+                                        <input type="file" class="btn btn-primary btn-user btn-block" name="homePhoto" accept="image/*" id="homePhoto" required
                                             placeholder="Home Photo">
                                     </div>
                                 </div>
