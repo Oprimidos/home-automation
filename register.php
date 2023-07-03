@@ -62,30 +62,23 @@ if (isset($_SESSION)) {
                                         <input type="text" class="form-control form-control-user" id="userLastName" name="userLastName" required
                                             placeholder="Last Name">
                                     </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" name="homeName" id="homeName" required
-                                            placeholder="Home Name">
-                                    </div>
                                     
                                     <div class="col-sm-6">
-                                
-                                        <input type="file" class="btn btn-primary btn-user btn-block" name="homePhoto" id="homePhoto" required
-                                            placeholder="Home Photo">
+                                        <input type="number" class="form-control form-control-user" name="homeID" id="homeID" required
+                                            placeholder="Home ID->Take From Producer">
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                    
+                                <div class="form-group col-md-12">
                                     <input type="email" class="form-control form-control-user" id="userMail" name="userMail" required
                                         placeholder="Email Address">
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        
                                         <input type="password" class="form-control form-control-user"
                                         id="password" name="userPassword" required
                                         placeholder="Password">
                                     </div>
-
                                 </div>
-                                <button type="submit" name="register" class="btn btn-primary btn-user btn-block">
+                                
+                                <button type="submit" name="registerC" class="btn btn-primary btn-user btn-block">
                                     Register Account
                                 </button>
                              
