@@ -65,7 +65,7 @@ $dataPointsKwhJson = json_encode($dataPointsKwh);
 	exportEnabled: true,
 	animationEnabled: true,
 	title:{
-		text: "State Operating Funds"
+		text: "Kwh Per Room"
 	},
 	legend:{
 		cursor: "pointer",
