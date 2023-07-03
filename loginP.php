@@ -59,7 +59,7 @@ if (isset($_SESSION)) {
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="POST" action="config/loginuser.php">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="userMail" aria-describedby="emailHelp" name="userMail"  required
@@ -71,15 +71,15 @@ if (isset($_SESSION)) {
                                                 placeholder="Password">
                                         </div>
 
-                                        <a href="home.php" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
+    </button>
 
 
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="registerP.php">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
