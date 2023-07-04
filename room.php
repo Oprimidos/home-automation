@@ -66,15 +66,19 @@
     ?>
     <div class="container" ">
        
-        <div class=" card text-bg-dark">
-
-        <div class="card-img-overlay">
-            <h1 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center;">Consumer Dashboard</h1>
-            <h3 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center; "><?php echo $room["roomName"] ?></h3>
-            <div class="row col-12">
-                
-                    <table class="table table-dark table-striped" style="height: 250px;">
-                        <thead>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section" >Consumer Dashboard</h2>
+                    <h3 class="heading-section" ><?php echo $room["roomName"] ?></h3>
+				</div>
+			</div>
+			<div class="row">
+            <div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+					    <thead class="thead-primary">
                             <tr>
                                 <th scope="col">SENSOR</th>
                                 <th scope="col">VALUE</th>
