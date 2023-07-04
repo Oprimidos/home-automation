@@ -65,3 +65,14 @@ if(isset($_POST["decline"])){
 
         header("Location:../registeraccept.php");
 }
+if(isset($_POST["editRoom"])){
+  echo $_POST["roomID"];
+}
+if(isset($_POST["addsensor"])){
+  $insertsensor=$db->prepare("INSERT INTO sensor (sensorType,sensorRoomID) VALUES (:sensorType,:sensorRoomID)");
+  $insertsensor->bindParam(":sensorType",$_POST["sensorType"]);
+  $insertsensor->bindParam(":sensorRoomID",$_POST["sensorRoomID"]);
+  $insertsensor->execute();
+
+  header("Location:../admin.php");
+}
