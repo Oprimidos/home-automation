@@ -30,4 +30,6 @@ if (isset($_POST["addroom"])) {
         "roomPhoto" => $sqlpicture,
         "homeID" => $_SESSION["userHomeID"]
     ));
+
+    header("Location:../admin.php");
 }
