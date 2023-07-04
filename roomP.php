@@ -67,24 +67,21 @@
     <?php
     ?>
     <div class="container" ">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      
-        
-
-        <div class=" card text-bg-dark">
-
-        <div class="card-img-overlay">
-            <h1 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center;">Producer Dashboard</h1>
-            <h3 class="card-title bg-dark" style=" padding-top:30px; padding-bottom:30px; text-align: center; "><?php echo $room["roomName"] ?></h3>
-            <div class="row col-12">
-
-                <table class="table table-dark table-striped" style="height: 250px;">
-                    <thead>
-                        <tr>
+       
+       <section class="ftco-section">
+           <div class="container">
+               <div class="row justify-content-center">
+                   <div class="col-md-6 text-center mb-5">
+                       <h2 class="heading-section" >Producer Dashboard</h2>
+                       <h3 class="heading-section" ><?php echo $room["roomName"] ?></h3>
+                   </div>
+               </div>
+               <div class="row">
+               <div class="col-md-12">
+                       <div class="table-wrap">
+                           <table class="table">
+                           <thead class="thead-primary">
+                           <tr>
                             <th scope="col">SENSOR</th>
                             <th scope="col">VALUE</th>
                             <th scope="col">LAST CHANGE TIME</th>
@@ -92,7 +89,9 @@
                             <th scope="col">MONEY</th>
                             <th scope="col">BUTTONS</th>
                         </tr>
-                    </thead>
+                           </thead>
+
+
                     <tbody>
                         <?php
 
@@ -110,21 +109,21 @@
                                 <td><?php echo $sensor['sensorMoney'] ?> $</td>
                                 <td>
                                     <form action="config/deneme.php" method="post">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                    <div class="scope border-bottom-0" aria-label="Basic example">
                                         <?php
                                         if ($sensor["sensorType"] == "Light") {
-                                            echo '<button type="submit" class="btn btn-outline-light" name="lighton">ON</button>
-                                        <button type="submit" class="btn btn-outline-light" name="lightoff">OFF</button>';
+                                            echo '<button type="submit" class="btn btn-primary" name="lighton">ON</button>
+                                        <button type="submit" class="btn btn-primary" name="lightoff">OFF</button>';
                                         }
                                         elseif ($sensor["sensorType"]=="Air Condition") {
-                                            echo '<button type="submit" class="btn btn-outline-light" name="airon">ON</button>
-                                                <button type="submit" class="btn btn-outline-light" name="airup">INCREASE</button>
-                                                <button type="submit" class="btn btn-outline-light" name="airdown">DECREASE</button>
-                                                <button type="submit" class="btn btn-outline-light" name="airof">OFF</button>';
+                                            echo '<button type="submit" class="btn btn-primary" name="airon">ON</button>
+                                                <button type="submit" class="btn btn-primary" name="airup">INCREASE</button>
+                                                <button type="submit" class="btn btn-primary" name="airdown">DECREASE</button>
+                                                <button type="submit" class="btn btn-primary" name="airof">OFF</button>';
                                         }
                                         elseif($sensor["sensorType"]=="Humidity"){
-                                            echo '<button type="submit" class="btn btn-outline-light" name="humup">INCREASE</button>
-                                        <button type="submit" class="btn btn-outline-light" name="humdown">DECREASE</button>';
+                                            echo '<button type="submit" class="btn btn-primary" name="humup">INCREASE</button>
+                                        <button type="submit" class="btn btn-primary" name="humdown">DECREASE</button>';
                                         }
                                         ?>
                                         </div>
