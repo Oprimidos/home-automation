@@ -48,7 +48,6 @@
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <? php ?>
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
