@@ -33,3 +33,35 @@ if (isset($_POST["addroom"])) {
 
     header("Location:../admin.php");
 }
+
+if(isset($_POST["accept"])){
+  $sqlregister=$db->prepare("SELECT regFirstName,regLastName,regMail,regPassword,regType,regHomeID FROM register WHERE regID=:regID");
+  $sqlregister->bindParam(":regID",$_POST["regID"]);
+  $sqlregister->execute();
+  $register=$sqlregister->fetch(PDO::FETCH_ASSOC);
+  
+  $insertregister = $db->prepare("INSERT INTO users 
+        (userFirstName, userLastName,userMail,userPassword,userType,userHomeID) 
+        VALUES (:userFirstName, :userLastName,:userMail,:userPassword,:userType,:userHomeID)");
+        $insertregister->bindParam(':userFirstName', $register["regFirstName"]);
+        $insertregister->bindParam(':userLastName', $register["regLastName"]);
+        $insertregister->bindParam(':userMail', $register["regMail"]);
+        $insertregister->bindParam(':userPassword', $register["regPassword"]);
+        $insertregister->bindParam(':userType', $register["regType"]);
+        $insertregister->bindParam(':userHomeID', $register["regHomeID"]);
+        $insertregister->execute();
+
+        $sqldelete=$db->prepare("DELETE FROM register WHERE regID=:regID");
+        $sqldelete->bindParam(":regID",$_POST["regID"]);
+        $sqldelete->execute();
+
+        header("Location:../registeraccept.php");
+
+}
+if(isset($_POST["decline"])){
+  $sqldelete=$db->prepare("DELETE FROM register WHERE regID=:regID");
+        $sqldelete->bindParam(":regID",$_POST["regID"]);
+        $sqldelete->execute();
+
+        header("Location:../registeraccept.php");
+}

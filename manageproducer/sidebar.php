@@ -59,7 +59,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.php">
+                <a class="nav-link" href="registeraccept.php">
                     <img src="../assets/icons/consumer.png" alt="Consumer">
                     <span>Last Activities</span></a>
             </li>
