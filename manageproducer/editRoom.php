@@ -13,13 +13,29 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom styles for this template-->
     <link href="../assets/css/admin2.css" rel="stylesheet">
+    <script>
+        window.onload = function() {
+            var input = document.getElementById('roomPhoto');
+            var previewImage = document.getElementById('preview-image');
 
+            input.addEventListener('change', function(event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    previewImage.src = event.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            });
+        };
+    </script>
 </head>
 
 <body id="page-top">
@@ -28,19 +44,19 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include("sidebar.php");?>
+        <?php include("sidebar.php"); ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <?php?>
+        <? php ?>
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
 
-<br>               
+                <br>
 
-                    <div class="container-fluid">
+                <div class="container-fluid">
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800 text-center">Edit Room Page</h1>
                     <div class="row">
@@ -52,54 +68,75 @@
                                     <h6 class="m-0 font-weight-bold text-primary text-center">Edit Room Form</h6>
                                 </div>
                                 <div class="card-body">
+                                    <?php
+                                    $sqlroom = $db->prepare("SELECT * FROM room WHERE homeID=:homeID");
+                                    $sqlroom->bindParam(":homeID", $_SESSION["userHomeID"]);
+                                    $sqlroom->execute();
+                                    $rooms = $sqlroom->fetchAll(PDO::FETCH_ASSOC);
+                                    foreach ($rooms as $room) {
 
-                                    <form class="user" method="POST" action="config/operation.php" enctype="multipart/form-data">
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 mb-3 mb-sm-10">
-                                                <input type="number" class="form-control form-control-user" value="<?php?>">
-                                                <input type="text" class="form-control form-control-user" id="roomName" name="roomName" required placeholder="Room Name">
-                                            </div>
-                                            <div class="col-sm-12 mb-3 mb-sm-10">
-                                                <img id="preview-image" src="#" alt="Preview" />
-                                            </div>
-                                            <div class="col-sm-12 mb-3 mb-sm-10">
-                                                <label for=""> Room Photo</label>
-                                                <input type="file" id="roomPhoto" name="roomPhoto" accept="image/*" required>
-                                            </div>
-                                           
-                                            <button type="submit" name="addroom" class="btn btn-primary btn-user btn-block">
-                                                Add A Room
-                                            </button>
+                                    ?>
+                                        <div class="accordion" id="accordionExample">
 
-                                    </form>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        Edit <?php echo $room["roomName"] ?>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <form class="user" method="POST" action="config/operation.php" enctype="multipart/form-data">
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-12 mb-3 mb-sm-10">
+                                                                    <label for="">Room Number</label>
+                                                                    <input type="number" class="form-control form-control-user" value="<?php echo $room["roomID"] ?>" disabled>
+                                                                </div>
+                                                                <div class="col-sm-12 mb-3 mb-sm-10">
+                                                                    <label for="">Room Name</label>
+                                                                    <input type="text" class="form-control form-control-user" id="roomName" name="roomName" required value=<?php echo $room["roomName"]?>>
+                                                                </div>
+                                                                <div class="col-sm-12 mb-3 mb-sm-10">
+                                                                    <img id="preview-image" src="<?php echo "../".$room["roomPhoto"] ?>" alt="Preview"/ style="height: 250px;" >
+                                                                </div>
+                                                                <div class="col-sm-12 mb-3 mb-sm-10">
+                                                                    <label for="">Room Photo</label>
+                                                                    <input type="file" id="roomPhoto" name="roomPhoto" accept="image/*" value="<?php echo $room["roomPhoto"]?>">
+                                                                </div>
+                                                                <input type="hidden" name="roomID" value="<?php echo $room["roomID"]?>">
+                                                                <button type="submit" name="editRoom" class="btn btn-primary btn-user btn-block">
+                                                                    Save
+                                                                </button>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                        </div>
 
                                 </div>
                             </div>
 
                         </div>
 
+
+
                     </div>
 
                 </div>
-
-                </div>
-                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+            <!-- /.container-fluid -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -110,24 +147,6 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
