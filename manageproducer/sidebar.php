@@ -26,7 +26,13 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Pages Collapse Menu --><li class="nav-item">
+                <a class="nav-link collapsed" href="listSensor.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <img src="../assets/icons/sensor.png" alt="Sensor">
+                    <span>Sensors</span>
+                </a>
+
+            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="addRoom.php" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <img src="../assets/icons/add.png" alt="Add">
@@ -50,6 +56,7 @@
                 </a>
 
             </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider">

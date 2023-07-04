@@ -76,3 +76,9 @@ if(isset($_POST["addsensor"])){
 
   header("Location:../admin.php");
 }
+if(isset($_POST["deletesensor"])){
+  $deletesensor=$db->prepare("DELETE FROM sensor WHERE sensorID=:sensorID");
+  $deletesensor->bindParam(":sensorID",$_POST["sensorID"]);
+  $deletesensor->execute();
+  header("Location:../admin.php");
+}
