@@ -43,6 +43,13 @@
                 </a>
 
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="addSensor.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <img src="../assets/icons/sensor.png" alt="Sensor">
+                    <span>Add Sensor</span>
+                </a>
+
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -58,6 +65,7 @@
             <!-- Nav Item - Charts -->
 
             <!-- Nav Item - Tables -->
+            
             <li class="nav-item">
                 <a class="nav-link" href="registeraccept.php">
                     <img src="../assets/icons/consumer.png" alt="Consumer">
