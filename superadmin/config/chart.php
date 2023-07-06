@@ -1,96 +1,82 @@
-
-
-<!--Bar Chart For Money-->
+<!--Bar Chart For User-->
 <?php
-$sqlRoomMoney = $db->prepare('SELECT s.sensorRoomID AS roomID, r.roomName, r.homeID, SUM(s.sensorMoney) AS totalMoney
-    FROM sensor AS s
-    JOIN room AS r ON s.sensorRoomID = r.roomID
-    WHERE r.homeID=:homeID
-    GROUP BY s.sensorRoomID, r.roomName, r.HomeID  ; ');
-    $sqlRoomMoney->bindParam(":homeID",$_SESSION["userHomeID"]);
+$sqlusercount = $db->prepare(
+    'SELECT userType, COUNT(*) AS count FROM users GROUP BY userType');
 
-$sqlRoomMoney->execute();
-$roomSensorData = $sqlRoomMoney->fetchAll(PDO::FETCH_ASSOC);
-$dataPointsMoney = [];
-foreach ($roomSensorData as $data) {
-    $dataPointsMoney[] = ['y' => $data['totalMoney'], 'label' => $data['roomName']];
+$sqlusercount->execute();
+$usercount = $sqlusercount->fetchAll(PDO::FETCH_ASSOC);
+$dataPointsUsers = [];
+foreach ($usercount as $data) {
+    $dataPointsUsers[] = ['y' => $data['count'], 'label' => $data['userType']];
 }
 
-$dataPointsMoneyJson = json_encode($dataPointsMoney);
+$dataPointsUsersJson = json_encode($dataPointsUsers);
 ?>
 
 
-<!--Pie Chart For Kwh-->
+<!--Pie Chart For Room Type-->
 <?php
-$sqlRoomKwh = $db->prepare('SELECT s.sensorRoomID AS roomID, r.roomName, r.homeID, SUM(s.sensorKwh) AS totalKwh
-    FROM sensor AS s
-    JOIN room AS r ON s.sensorRoomID = r.roomID
-    WHERE r.homeID=:homeID
-    GROUP BY s.sensorRoomID, r.roomName, r.HomeID  ; ');
-    $sqlRoomKwh->bindParam(":homeID",$_SESSION["userHomeID"]);
-
-$sqlRoomKwh->execute();
-$roomSensorData = $sqlRoomKwh->fetchAll(PDO::FETCH_ASSOC);
-$dataPointsKwh = [];
-foreach ($roomSensorData as $data) {
-    $dataPointsKwh[] = ['y' => $data['totalKwh'], 'name' => $data['roomName']];
+$sqlRoom = $db->prepare('SELECT roomName, COUNT(*) AS count FROM room GROUP BY roomName');
+$sqlRoom->execute();
+$roomData = $sqlRoom->fetchAll(PDO::FETCH_ASSOC);
+$dataPointsRoom = [];
+foreach ($roomData as $data) {
+    $dataPointsRoom[] = ['y' => $data['count'], 'name' => $data['roomName']];
 }
 
-$dataPointsKwhJson = json_encode($dataPointsKwh);
+$dataPointsRoomJson = json_encode($dataPointsRoom);
 ?>
 <script>
-    var dataPointsMoney = <?php echo $dataPointsMoneyJson; ?>;
-    var dataPointsKwh = <?php echo $dataPointsKwhJson; ?>;
+    var dataPointsUsers = <?php echo $dataPointsUsersJson; ?>;
+    var dataPointsRoom = <?php echo $dataPointsRoomJson; ?>;
     window.onload = function() {
         var chart1 = new CanvasJS.Chart("chartContainer1", {
             animationEnabled: true,
             theme: "light2", // "light1", "light2", "dark1", "dark2"
             title: {
-                text: "MONEY PER ROOM"
+                text: "User Type"
             },
             axisY: {
-                title: "Money"
+                title: "User"
             },
             data: [{
                 type: "column",
                 showInLegend: true,
                 legendMarkerColor: "grey",
-                legendText: "Rooms",
-                dataPoints: dataPointsMoney
+                legendText: "Users",
+                dataPoints: dataPointsUsers
             }]
         });
         chart1.render();
 
         var chart2 = new CanvasJS.Chart("chartContainer2", {
-	exportEnabled: true,
-	animationEnabled: true,
-	title:{
-		text: "Kwh Per Room"
-	},
-	legend:{
-		cursor: "pointer",
-		itemclick: explodePie
-	},
-	data: [{
-		type: "pie",
-		showInLegend: true,
-		toolTipContent: "{name}: <strong>{y}%</strong>",
-		indexLabel: "{name} - {y}%",
-		dataPoints: dataPointsKwh
-	}]
-});
-chart2.render();
-}
+            exportEnabled: true,
+            animationEnabled: true,
+            title: {
+                text: "Room Type"
+            },
+            legend: {
+                cursor: "pointer",
+                itemclick: explodePie
+            },
+            data: [{
+                type: "pie",
+                showInLegend: true,
+                toolTipContent: "{name}: <strong>{y}%</strong>",
+                indexLabel: "{name} - {y}%",
+                dataPoints: dataPointsRoom
+            }]
+        });
+        chart2.render();
+    }
 
-function explodePie (e) {
-	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-	} else {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
-	}
-	e.chart2.render();
+    function explodePie(e) {
+        if (typeof(e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+            e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+        } else {
+            e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+        }
+        e.chart2.render();
 
-}
-
-
+    }
 </script>
