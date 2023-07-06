@@ -58,7 +58,7 @@ if(!($_SESSION["userType"]=="Admin")){
             <hr class="sidebar-divider d-md-block">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="rooms.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="registers.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <img src="../assets/icons/consumer.png" alt="Producer">
                     <span>Last Activities</span>
                 </a>
