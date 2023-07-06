@@ -1,4 +1,10 @@
-<?php include("../config/connectdb.php")?>
+<?php include("../config/connectdb.php");
+if(!($_SESSION["userType"]=="Admin")){
+    session_destroy();
+    header("Location:../index.php");
+}
+
+?>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -49,8 +55,15 @@
                 </a>
 
             </li>
-            
-            
+            <hr class="sidebar-divider d-md-block">
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="rooms.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <img src="../assets/icons/consumer.png alt="Producer">
+                    <span>Last Activities</span>
+                </a>
+
+            </li>
 
             <!-- Divider -->
             
