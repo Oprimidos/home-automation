@@ -1,4 +1,8 @@
-<?php include("../config/connectdb.php")?>
+<?php include("../config/connectdb.php");
+if(($_SESSION["userHomeID"]==0)){
+    session_destroy();
+    header("Location:../index.php");
+}?>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
