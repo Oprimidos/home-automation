@@ -15,7 +15,7 @@
         }, 10000);
     </script>
     <?php include("config/connectdb.php") ?>
-    <?php // include("config/update.php");
+    <?php include("config/update.php");
     ?>
     <?php
     if (strlen($_SESSION["userMail"]) == 0) {
