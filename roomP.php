@@ -78,6 +78,8 @@
                                 <td><?php echo $sensor['sensorMoney'] ?> $</td>
                                 <td>
                                     <form action="config/operation.php" method="post">
+                                        <input type="hidden" name="roomID" value="<?php echo $_GET['roomID']?>">
+                                        <input type="hidden" name="sensorID" value="<?php echo $sensor["sensorID"]?>">
                                     <div class="scope border-bottom-0" aria-label="Basic example">
                                         <?php
                                         if ($sensor["sensorType"] == "Light") {
