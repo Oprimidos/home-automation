@@ -26,38 +26,6 @@
     }
     
     ?>
-    <?php
-    /*$dataPoints = array();
-    $handle = $db->prepare('SELECT sensor,lightKwh from viewKwh WHERE lightRoomID=2');
-    $handle->execute();
-    $result = $handle->fetchAll(\PDO::FETCH_OBJ);
-    foreach ($result as $row) {
-        array_push($dataPoints, array("label" => $row->sensor, "y" => $row->lightKwh));
-    }
-*/
-
-    ?>
-    <script>
-        window.onload = function() {
-
-            var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-
-                title: {
-                    text: "ENERGY USED CHART FOR sensor",
-                },
-                data: [{
-                    type: "pie",
-                    startAngle: 240,
-                    yValueFormatString: "##0.00\"%\"",
-                    indexLabel: "{label} {y}",
-                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                }]
-            });
-            chart.render();
-
-        }
-    </script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 </head>
 
