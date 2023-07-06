@@ -67,7 +67,7 @@
                                         <tr>
                                             <th>Home Name</th>
                                             <th>Home Photo Url</th>
-                                            <th>Number of homes</th>
+                                            <th>Number of Rooms</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
@@ -75,7 +75,7 @@
                                         <tr>
                                         <th>Home Name</th>
                                             <th>Home Photo Url</th>
-                                            <th>Number of homes</th>
+                                            <th>Number of Rooms</th>
                                             <th>Delete</th>
                                         </tr>
                                     </tfoot>
