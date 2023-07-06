@@ -66,7 +66,31 @@ if(isset($_POST["decline"])){
         header("Location:../registeraccept.php");
 }
 if(isset($_POST["editRoom"])){
-  echo $_POST["roomID"];
+    $upload = "../../assets/images/room/";
+    
+    if($_FILES["roomPhoto"]["size"]>0){
+      $sqlphoto=$db->prepare("SELECT roomPhoto FROM room WHERE roomID=:roomID");
+      $sqlphoto->bindParam(":roomID",$_POST["roomID"]);
+      $sqlphoto->execute();
+      $photo=$sqlphoto->fetch(PDO::FETCH_ASSOC);
+      unlink($photo["roomPhoto"]);
+    }
+
+    $oldFileName = $_FILES["roomPhoto"]["name"];
+    $Extension = pathinfo($oldFileName, PATHINFO_EXTENSION);
+    $_FILES["roomPhoto"]["name"] = $maxId . "." . $Extension;
+    $file = $_FILES["roomPhoto"]["name"];
+    @move_uploaded_file($_FILES["roomPhoto"]["tmp_name"], $upload . $file);
+    $sqlpicture = $upload . $file;
+    $sqlpicture = substr($sqlpicture, 4);
+
+    $sqleditroom =$db ->prepare("UPDATE room SET roomName=:roomName,roomPhoto=:roomPhoto WHERE roomID=:roomID");
+    $sqleditroom->bindParam(":roomName",$_POST["roomName"]);
+    $sqleditroom->bindParam(":roomPhoto",$sqlpicture);
+    $sqleditroom->bindParam(":roomID",$_POST["roomID"]);
+    $sqleditroom->execute();
+
+
 }
 if(isset($_POST["addsensor"])){
   $insertsensor=$db->prepare("INSERT INTO sensor (sensorType,sensorRoomID) VALUES (:sensorType,:sensorRoomID)");
