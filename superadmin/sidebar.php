@@ -34,14 +34,14 @@ if(!($_SESSION["userType"]=="Admin")){
 
             <!-- Nav Item - Pages Collapse Menu --><li class="nav-item">
                 <a class="nav-link collapsed" href="users.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <img src="../assets/icons/sensor.png" alt="Sensor">
+                    <img src="../assets/icons/user.png" alt="User">
                     <span>Users</span>
                 </a>
 
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="homes.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <img src="../assets/icons/sensor.png" alt="Sensor">
+                <a class="nav-link collapsed" href="home.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <img src="../assets/icons/home.png" alt="Home">
                     <span>Home</span>
                 </a>
 
@@ -50,7 +50,7 @@ if(!($_SESSION["userType"]=="Admin")){
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="rooms.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <img src="../assets/icons/edit.png" alt="Edit">
+                    <img src="../assets/icons/room.png" alt="Room">
                     <span>Room</span>
                 </a>
 
@@ -59,7 +59,7 @@ if(!($_SESSION["userType"]=="Admin")){
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="registers.php" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <img src="../assets/icons/consumer.png" alt="Producer">
+                    <img src="../assets/icons/consumer.png" alt="Register">
                     <span>Last Activities</span>
                 </a>
 
