@@ -31,6 +31,17 @@ elseif($randomValue==-1){
     $sqlupdatehum=$db->prepare("UPDATE sensor SET sensorValue=sensorValue-1 WHERE sensorType='Humidity' AND sensorValue>30");
 }
 
+//Random Temperature Update
+$options = array(1,-1);
+$randomIndex = array_rand($options);
+$randomValue = $options[$randomIndex];
+if($randomValue==1){
+    $sqlupdatehum=$db->prepare("UPDATE sensor SET sensorValue=sensorValue+1 WHERE sensorType='Temperature' AND sensorValue<40");
+}
+elseif($randomValue==-1){
+    $sqlupdatehum=$db->prepare("UPDATE sensor SET sensorValue=sensorValue-1 WHERE sensorType='Temperature' AND sensorValue>0");
+}
+
 
 
 
