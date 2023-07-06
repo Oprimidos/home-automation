@@ -14,8 +14,9 @@ if (isset($_SESSION)) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/images/favicon-home.png" type="image/x-icon">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Consumer Register</title>
 
     <!-- Custom fonts for this template-->
     <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
