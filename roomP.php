@@ -28,39 +28,8 @@
     }
 
     ?>
-    <?php
-    /*$dataPoints = array();
-    $handle = $db->prepare('SELECT sensor,lightKwh from viewKwh WHERE lightRoomID=2');
-    $handle->execute();
-    $result = $handle->fetchAll(\PDO::FETCH_OBJ);
-    foreach ($result as $row) {
-        array_push($dataPoints, array("label" => $row->sensor, "y" => $row->lightKwh));
-    }
-*/
-
-    ?>
-    <script>
-        window.onload = function() {
-
-            var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-
-                title: {
-                    text: "ENERGY USED CHART FOR sensor",
-                },
-                data: [{
-                    type: "pie",
-                    startAngle: 240,
-                    yValueFormatString: "##0.00\"%\"",
-                    indexLabel: "{label} {y}",
-                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                }]
-            });
-            chart.render();
-
-        }
-    </script>
-    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    
+    
 </head>
 
 <body>
@@ -108,7 +77,7 @@
                                 <td><?php echo $sensor['sensorKwh'] ?> Kwh</td>
                                 <td><?php echo $sensor['sensorMoney'] ?> $</td>
                                 <td>
-                                    <form action="config/deneme.php" method="post">
+                                    <form action="config/operation.php" method="post">
                                     <div class="scope border-bottom-0" aria-label="Basic example">
                                         <?php
                                         if ($sensor["sensorType"] == "Light") {
@@ -119,7 +88,7 @@
                                             echo '<button type="submit" class="btn btn-primary" name="airon">ON</button>
                                                 <button type="submit" class="btn btn-primary" name="airup">INCREASE</button>
                                                 <button type="submit" class="btn btn-primary" name="airdown">DECREASE</button>
-                                                <button type="submit" class="btn btn-primary" name="airof">OFF</button>';
+                                                <button type="submit" class="btn btn-primary" name="airoff">OFF</button>';
                                         }
                                         elseif($sensor["sensorType"]=="Humidity"){
                                             echo '<button type="submit" class="btn btn-primary" name="humup">INCREASE</button>
