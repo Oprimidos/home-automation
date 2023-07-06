@@ -41,7 +41,7 @@
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                            <a href="superadmin/login.php" target="_blank" ><i class="fas fa-laptop fa-stack-1x fa-inverse"></a></i>
                         </span>
                         <h4 class="my-3">Manage</h4>
                         <p class="text-muted">Control your home easily</p>
