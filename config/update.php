@@ -15,10 +15,10 @@ $sqlair = $db->prepare('UPDATE sensor SET sensorKwh = sensorKwh + 0.3,sensorMone
 $sqlair->execute();
 
 //Tempature Update
-$sqlair = $db->prepare('UPDATE sensor
-SET sensorValue = sensorValue + 1
-WHERE column1 > column2;');
-$sqlair->execute();
+/*$sqltemp = $db->prepare('UPDATE sensor
+SET sensorValue = sensorValue - 1
+WHERE t.sensorValue > a.sensorValue ;');
+$sqltemp->execute();*/
 
 //Random Humidity Update
 $options = array(1,-1);
